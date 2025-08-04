@@ -1,0 +1,255 @@
+:root {
+    --color-azul-oscuro: #000957;
+    --color-azul-medio: #0611AC;
+    --color-azul-claro: #3F56FF;
+    --color-azul-palido: #E5EBFF;
+}
+
+body, .navbar, .navbar-nav, .navbar-brand {
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+body {
+    padding-top: 70px; /* Ajusta según el alto real de tu navbar */
+    padding-bottom: 0;
+}
+
+h2 {
+    color: var(--color-azul-oscuro);
+    font-weight: bold;
+}
+
+.navbar {
+    background-color: var(--color-azul-oscuro) !important;
+    border: none;
+}
+
+.navbar .navbar-brand,
+.navbar .nav > li > a {
+    color: #fff !important;
+}
+
+.navbar .nav > li.active > a {
+    background-color: #1a1a40 !important;
+    color: #fff !important;
+}
+
+.navbar-pixel {
+    min-height: 70px;
+    display: block; /* Cambia flex a block para que el contenido fluya de izquierda a derecha */
+    align-items: unset;
+    justify-content: unset;
+}
+
+.navbar-pixel .navbar-nav > li > a {
+    color: #fff !important;
+    background-color: var(--color-azul-oscuro) !important;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: background-color 0.3s ease; /* Animación de desvanecimiento */
+}
+
+.navbar-pixel .navbar-nav > li > a:hover,
+.navbar-pixel .navbar-nav > li.active > a {
+    background-color: var(--color-azul-medio) !important;
+    color: #fff !important;
+}
+
+.navbar-logo {
+    height: 40px;
+    width: auto;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Mostrar el menú desplegable al hacer hover en la categoría SOLO en escritorio */
+@media (min-width: 768px) {
+    .navbar-pixel .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.3s ease;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+    .navbar-pixel .dropdown-menu {
+        background-color: var(--color-azul-medio);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 180px;
+        border-radius: 0 0 6px 6px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+        z-index: 9999;
+    }
+    .navbar-pixel .dropdown-menu > li > a {
+        color: #fff !important; /* Cambia el texto de las categorías a blanco */
+        transition: background-color 0.3s;
+    }
+    .navbar-pixel .dropdown-menu > li > a:hover {
+        background-color: var(--color-azul-claro) !important;
+        color: #fff !important;
+    }
+}
+
+/* En móviles, usa el comportamiento por defecto de Bootstrap (menú dentro del colapsable) */
+@media (max-width: 767px) {
+    .navbar-pixel .navbar-nav > li > a {
+        height: auto;
+        min-height: 50px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-size: 18px;
+    }
+    .navbar-pixel .dropdown-menu > li > a {
+        color: #fff !important;
+        background-color: var(--color-azul-oscuro) !important;
+        font-size: 18px;
+        padding: 15px 20px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .navbar-pixel .dropdown-menu > li > a:hover {
+        background-color: var(--color-azul-medio) !important;
+        color: #fff !important;
+    }
+    .navbar-pixel .dropdown-menu {
+        display: none;
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        box-shadow: none;
+        background-color: var(--color-azul-palido);
+        min-width: 100%;
+        border-radius: 0;
+    }
+    .navbar-pixel .dropdown.open .dropdown-menu {
+        display: block;
+    }
+    
+    .carousel-caption {
+        display: none;
+    }
+
+    .carousel-indicators {
+        display: none;
+    }
+}
+
+/* Footer solo al final de la página, no fijo */
+.footer-pixel {
+    background-color: var(--color-azul-oscuro);
+    color: #fff;
+    padding: 30px 0 15px 0;
+    font-size: 16px;
+    width: 100%;
+    position: relative; /* Cambia de fixed a relative */
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    margin-top: 40px; /* Espacio antes del footer */
+}
+
+.footer-pixel .footer-social a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 22px;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.footer-pixel .footer-social a:hover {
+    color: var(--color-azul-claro);
+}
+
+/* Submenú de categorías */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0 !important;           /* Alinea perfectamente con el menú principal */
+    left: 100%;
+    margin-top: 0 !important;    /* Elimina cualquier desplazamiento vertical */
+    background-color: var(--color-azul-claro);
+    border-radius: 0 6px 6px 6px;
+    min-width: 160px;
+}
+
+.dropdown-submenu > a:after {
+    content: "▶";
+    float: right;
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+@media (min-width: 768px) {
+    .navbar-pixel .dropdown-menu > .dropdown-submenu {
+        position: relative;
+    }
+    .navbar-pixel .dropdown-menu > .dropdown-submenu > .dropdown-menu {
+        left: 100%;      /* Despliega a la derecha del menú principal */
+        top: 0;
+        margin-top: -1px;
+        position: absolute;
+        background-color: var(--color-azul-claro);
+        border-radius: 0 6px 6px 6px;
+        min-width: 160px;
+        display: none;
+        z-index: 10001;
+    }
+    .navbar-pixel .dropdown-menu > .dropdown-submenu:hover > .dropdown-menu {
+        display: block;
+    }
+    .navbar-pixel .dropdown-menu > .dropdown-submenu > .dropdown-menu > li > a {
+        color: var(--color-azul-palido) !important;
+        background-color: var(--color-azul-claro) !important;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .navbar-pixel .dropdown-menu > .dropdown-submenu > .dropdown-menu > li > a:hover {
+        background-color: var(--color-azul-palido) !important;
+        color: var(--color-azul-oscuro) !important;
+    }
+}
+
+/* Submenú de categorías en móviles */
+@media (max-width: 767px) {
+    .dropdown-submenu > .dropdown-menu {
+        display: none;
+        background-color: var(--color-azul-oscuro); /* Igual que la navbar */
+        color: #fff;
+        position: static;
+        left: 0;
+        top: 0;
+        margin-top: 0;
+        border-radius: 0;
+        min-width: 100%;
+        box-shadow: none;
+    }
+    .dropdown-submenu > a:after {
+        content: "";
+    }
+    .navbar-pixel .dropdown-menu > .dropdown-submenu > .dropdown-menu > li > a {
+        color: #fff !important;
+        background-color: var(--color-azul-oscuro) !important;
+        font-size: 17px;
+        padding: 12px 40px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .navbar-pixel .dropdown-menu > .dropdown-submenu > .dropdown-menu > li > a:hover {
+        background-color: var(--color-azul-medio) !important;
+        color: #fff !important;
+    }
+}
+
+.navbar-pixel .dropdown-menu,
+.navbar-pixel .dropdown-submenu > .dropdown-menu {
+    border: none !important; /* Elimina el borde de los menús y submenús */
+    box-shadow: none !important; /* Elimina cualquier sombra */
+}

@@ -1,0 +1,108 @@
+{
+    "productos": [
+        {
+            "codigo": "P001",
+            "nombre": "GTA V",
+            "precio": 1300.00,
+            "categoria": "accion",
+            "plataforma": "PS5",
+            "populares": true
+        },
+        {
+            "codigo": "P002",
+            "nombre": "GTA V",
+            "precio": 1300.00,
+            "categoria": "accion",
+            "plataforma": "XBOX",
+            "populares": true
+        },
+        {
+            "codigo": "P003",
+            "nombre": "GTA V",
+            "precio": 1300.00,
+            "categoria": "accion",
+            "plataforma": "PC",
+            "populares": true
+        },
+        {
+            "codigo": "P004",
+            "nombre": "FIFA 24",
+            "precio": 1450.00,
+            "categoria": "deportes",
+            "plataforma": "PS5",
+            "populares": true
+        },
+        {
+            "codigo": "P005",
+            "nombre": "FIFA 24",
+            "precio": 1450.00,
+            "categoria": "deportes",
+            "plataforma": "XBOX",
+            "populares": true
+        },
+        {
+            "codigo": "P006",
+            "nombre": "Call of Duty: Modern Warfare III",
+            "precio": 1800.00,
+            "categoria": "accion",
+            "plataforma": "PS5",
+            "populares": true
+        },
+        {
+            "codigo": "P007",
+            "nombre": "Call of Duty: Modern Warfare III",
+            "precio": 1800.00,
+            "categoria": "accion",
+            "plataforma": "XBOX",
+            "populares": true
+        },
+        {
+            "codigo": "P008",
+            "nombre": "Minecraft",
+            "precio": 900.00,
+            "categoria": "aventura",
+            "plataforma": "PC",
+            "populares": true
+        },
+        {
+            "codigo": "P009",
+            "nombre": "Minecraft",
+            "precio": 900.00,
+            "categoria": "aventura",
+            "plataforma": "PS5",
+            "populares": false
+        },
+        {
+            "codigo": "P010",
+            "nombre": "Mario Kart 8 Deluxe",
+            "precio": 1200.00,
+            "categoria": "carreras",
+            "plataforma": "Nintendo Switch",
+            "populares": true
+        },
+        {
+            "codigo": "P011",
+            "nombre": "The Legend of Zelda: Tears of the Kingdom",
+            "precio": 1700.00,
+            "categoria": "aventura",
+            "plataforma": "Nintendo Switch",
+            "populares": true
+        },
+        {
+            "codigo": "P012",
+            "nombre": "Hogwarts Legacy",
+            "precio": 1600.00,
+            "categoria": "rpg",
+            "plataforma": "PS5",
+            "populares": true
+        },
+        {
+            "codigo": "P013",
+            "nombre": "Hogwarts Legacy",
+            "precio": 1600.00,
+            "categoria": "rpg",
+            "plataforma": "XBOX",
+            "populares": true
+        }
+    ]
+}
