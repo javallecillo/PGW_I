@@ -184,7 +184,6 @@ h2 {
 }
 
 .dropdown-submenu > a:after {
-    content: "▶";
     float: right;
     margin-left: 5px;
     font-size: 12px;
@@ -344,7 +343,7 @@ h2 {
 .btn-agregar {
     flex: 1;
     padding: 8px 12px;
-    font-size: 16px;
+    font-size: 13px;
     text-align: center;
     text-decoration: none;
     border: none;
@@ -376,3 +375,151 @@ h2 {
     color: #ffffff;
     transform: scale(1.08);
 }
+
+/* Aplica el mismo estilo de los botones de las cards a los botones del modal */
+#modalJuego .btn-agregar,
+#modalJuego .btn-default[data-dismiss="modal"] {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-azul-medio);
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(6,17,172,0.08);
+    border-radius: 8px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#modalJuego .btn-agregar:hover,
+#modalJuego .btn-default[data-dismiss="modal"]:hover {
+    background-color: var(--color-azul-claro);
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+/* Botones del modal uno al lado del otro */
+#modalJuego .modal-footer {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Icono X del modal en blanco */
+#modalJuego .close {
+    color: #fff !important;
+    opacity: 1;
+    font-size: 28px;
+    text-shadow: none;
+}
+
+/* Vista móvil para el modal: imagen arriba, datos abajo */
+@media (max-width: 767px) {
+    #modalJuego .modal-body .modal-flex-info {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    #modalJuego .modal-body .modal-flex-info img {
+        margin: 0 0 18px 0 !important;
+        max-width: 90vw !important;
+        max-height: 220px !important;
+    }
+    #modalJuego .modal-body .modal-flex-info > div {
+        text-align: center !important;
+    }
+}
+
+/* Ajusta el alto de los controles del carrusel para que coincidan con el alto de las imágenes */
+.carousel-control {
+    height: 100% !important;      /* Ocupa el alto total del carrusel */
+    top: 0 !important;
+    bottom: 0 !important;
+    background: none !important;  /* Elimina el fondo por defecto si lo deseas */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+/* Opcional: ajusta el tamaño del icono de flecha para que no se vea tan grande */
+.carousel-control .glyphicon,
+.carousel-control .fa {
+    font-size: 30px;              /* Ajusta el tamaño del icono según tu preferencia */
+    color: #ffffff;               /* Color azul medio, puedes cambiarlo */
+    text-shadow: none;
+    
+}
+
+#modalCarrito .btn-cerrar-carrito {
+    background-color: var(--color-azul-medio);
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px !important;
+    border: none;
+    padding: 8px 12px;
+    font-size: 13px;
+    box-shadow: 0 2px 8px rgba(6,17,172,0.08);
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+}
+
+#modalCarrito .btn-cerrar-carrito:hover {
+    background-color: var(--color-azul-claro);
+    color: #fff;
+    transform: scale(1.08);
+}
+
+/* Modal del carrito más ancho en PC */
+@media (min-width: 768px) {
+    #modalCarrito .modal-dialog {
+        width: 700px;
+        max-width: 90vw;
+    }
+}
+
+/* Modal del carrito responsivo en móvil */
+@media (max-width: 767px) {
+    #modalCarrito .modal-dialog {
+        width: 98vw;
+        margin: 10px auto;
+    }
+    #modalCarrito .modal-content {
+        border-radius: 12px;
+    }
+    #modalCarrito .modal-body {
+        padding: 10px 4px;
+        overflow-x: auto;
+    }
+    #modalCarrito table {
+        font-size: 13px;
+        min-width: 400px;
+    }
+    #modalCarrito .modal-footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* Icono de categorías: derecha en PC, abajo en móvil */
+.toggle-categorias .fa-chevron-right {
+    transition: transform 0.3s;
+}
+
+@media (max-width: 767px) {
+    .toggle-categorias .fa-chevron-right {
+        transform: rotate(90deg);
+    }
+}
+

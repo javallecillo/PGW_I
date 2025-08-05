@@ -25,49 +25,71 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                    <img src="img/pixelplay_text_logo_right_all_white.png" alt="Pixel Play" class="navbar-logo">
+                    <img src="img/logo/pixelplay_text_logo_right_all_white.png" alt="Pixel Play" class="navbar-logo">
                 </a>
             </div>
             <!-- Opciones del menú colapsable -->
             <div class="collapse navbar-collapse" id="navbar-pixel-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Inicio</a></li>
-                    <li><a href="#">Juegos</a></li>
-                    <li><a href="#">Consolas</a></li>
+                    <li><a href="#" class="btn-inicio">Inicio</a></li>
+                    <li><a href="#" class="btn-biblioteca">Biblioteca</a></li>
+                    <li><a href="#" class="btn-ofertas">Ofertas</a></li>
+                    <li><a href="#" class="btn-populares">Populares</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorías <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorías<span class="caret"></i></span></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-submenu">
-                                <a href="#">PS5</a>
+                                <a href="#" class="filtro-consola" data-consola="PS5">
+                                    PS5
+                                    <span class="toggle-categorias" style="float:right; cursor:pointer;">
+                                        <i class="fa fa-chevron-right"></i>
+                                    </span>
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Acción</a></li>
-                                    <li><a href="#">Aventura</a></li>
-                                    <li><a href="#">Deportes</a></li>
-                                    <li><a href="#">RPG</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="accion">Acción</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="aventura">Aventura</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="deportes">Deportes</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="rpg">RPG</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
-                                <a href="#">XBOX</a>
+                                <a href="#" class="filtro-consola" data-consola="XBOX">
+                                    XBOX
+                                    <span class="toggle-categorias" style="float:right; cursor:pointer;">
+                                        <i class="fa fa-chevron-right"></i>
+                                    </span>
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Acción</a></li>
-                                    <li><a href="#">Carreras</a></li>
-                                    <li><a href="#">Estrategia</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="accion">Acción</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="aventura">Aventura</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="deportes">Deportes</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="rpg">RPG</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
-                                <a href="#">Nintendo Switch</a>
+                                <a href="#" class="filtro-consola" data-consola="Nintendo Switch">
+                                    Nintendo Switch
+                                    <span class="toggle-categorias" style="float:right; cursor:pointer;">
+                                        <i class="fa fa-chevron-right"></i>
+                                    </span>
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Plataformas</a></li>
-                                    <li><a href="#">Puzzle</a></li>
-                                    <li><a href="#">Aventura</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="aventura">Aventura</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="carreras">Carreras</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="deportes">Deportes</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="rpg">RPG</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
-                                <a href="#">PC</a>
+                                <a href="#" class="filtro-consola" data-consola="PC">
+                                    PC
+                                    <span class="toggle-categorias" style="float:right; cursor:pointer;">
+                                        <i class="fa fa-chevron-right"></i>
+                                    </span>
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Shooter</a></li>
-                                    <li><a href="#">Simulación</a></li>
-                                    <li><a href="#">Indie</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="aventura">Aventura</a></li>
+                                    <li><a href="#" class="filtro-categoria" data-categoria="accion">Acción</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
@@ -82,10 +104,9 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                         
-                        <a href="#">
+                        <a href="#" class="btn-carrito-navbar">
                             <i class="fa-solid fa-cart-shopping"></i>
-                              Carrito
+                            &nbsp;Carrito
                         </a>
                     </li>
                 </ul>
@@ -116,7 +137,7 @@
         <!-- Slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <img src="img/bannerPXN.png" alt="Imagen 1" style="width:100%;">
+                <img src="img/banners/bannerPXN.png" alt="Imagen 1" style="width:100%;">
                 <div class="carousel-caption">
                     <h3>Bienvenido a Pixel Play</h3>
                     <p>¡Las mejores consolas y videojuegos!</p>
@@ -124,7 +145,7 @@
             </div>
              
             <div class="item">
-                <img src="img/bannerGTA.png" alt="Imagen 2" style="width:100%;">
+                <img src="img/banners/bannerGTA.png" alt="Imagen 2" style="width:100%;">
                 <div class="carousel-caption">
                     <h3>Ofertas Especiales</h3>
                     <p>Descubre nuestras promociones</p>
@@ -132,7 +153,7 @@
             </div>
 
             <div class="item">
-                <img src="img/bannerCDB.png" alt="Imagen 3" style="width:100%;">
+                <img src="img/banners/bannerCDB.png" alt="Imagen 3" style="width:100%;">
                 <div class="carousel-caption">
                     <h3>Nuevos Lanzamientos</h3>
                     <p>¡No te los pierdas!</p>
@@ -140,7 +161,7 @@
             </div>
 
             <div class="item">
-                <img src="img/bannerMC.png" alt="Imagen 4" style="width:100%;">
+                <img src="img/banners/bannerMC.png" alt="Imagen 4" style="width:100%;">
                 <div class="carousel-caption">
                     <h3>Bienvenido a Pixel Play</h3>
                     <p>¡Las mejores consolas y videojuegos!</p>
@@ -148,7 +169,7 @@
             </div>
 
             <div class="item">
-                <img src="img/bannerMKW.png" alt="Imagen 5" style="width:100%;">
+                <img src="img/banners/bannerMKW.png" alt="Imagen 5" style="width:100%;">
                 <div class="carousel-caption">
                     <h3>Ofertas Especiales</h3>
                     <p>Descubre nuestras promociones</p>
@@ -156,7 +177,7 @@
             </div>
 
             <div class="item">
-                <img src="img/bannerGOW.png" alt="Imagen 3" style="width:100%;">
+                <img src="img/banners/bannerGOW.png" alt="Imagen 3" style="width:100%;">
                 <div class="carousel-caption">
                     <h3>Nuevos Lanzamientos</h3>
                     <p>¡No te los pierdas!</p>
@@ -173,6 +194,7 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
             <span class="sr-only">Siguiente</span>
         </a>
+        <br>
     </div>
     <!-- Fin del carrusel de fotos -->
 
@@ -181,6 +203,7 @@
         <div class="row">
             <div id="ofertas-container" class="col-md-12">
                 <h2 class="text-center">Ofertas</h2>
+                <br>
 
                 <div><!--Aqui se mostrarán las card con los productos del json por medio del script--></div>
 
@@ -188,6 +211,7 @@
 
             <div id="biblioteca-container" class="col-md-12">
                 <h2 class="text-center">Biblioteca de Juegos</h2> 
+                <br>
 
                 <div><!--Aqui se mostrarán las card con los productos del json por medio del script--></div>
                  
@@ -195,12 +219,80 @@
 
             <div id="populares-container" class="col-md-12">
                 <h2 class="text-center">Populares</h2>
+                <br>
 
                 <div><!--Aqui se mostrarán las card con los productos del json por medio del script--></div>
                 
             </div>
         </div>
     </div>
+    <!-- Fin de la sección de Productos -->
+
+    <!-- Modal para mostrar información del juego -->
+    <div class="modal fade" id="modalJuego" tabindex="-1" role="dialog" aria-labelledby="modalJuegoLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header" style="background: var(--color-azul-medio); color: #fff;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="modalJuegoLabel"></h4>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalJuegoImg" src="" alt="" style="max-width: 100%; max-height: 300px; border-radius: 16px; margin-bottom: 15px;">
+                <div id="modalJuegoInfo" style="margin-bottom: 10px;"></div>
+                <p id="modalJuegoPrecio" style="font-size: 22px; font-weight: bold; color: var(--color-azul-oscuro);"></p>
+            </div>
+            <div class="modal-footer" style="justify-content: center;">
+                <button type="button" class="btn btn-agregar" id="modalAgregarBtn">
+                <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del modal -->
+
+    <!-- Modal para el carrito de compras -->
+    <div class="modal fade" id="modalCarrito" tabindex="-1" role="dialog" aria-labelledby="modalCarritoLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: var(--color-azul-medio); color: #fff;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalCarritoLabel">Carrito de compras</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped" id="tablaCarrito">
+                    <thead>
+                        <tr>
+                        <th>Juego</th>
+                        <th>Consola</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí se agregan los productos del carrito -->
+                    </tbody>
+                    </table>
+                    <div style="text-align:right; font-size:18px; font-weight:bold;">
+                    Total: <span id="totalCarrito">L. 0.00</span>
+                    </div>
+                </div>
+                <div class="modal-footer" style="justify-content: center;">
+                    <button type="button" class="btn btn-default btn-cerrar-carrito" data-dismiss="modal">
+                        <i class="fa-solid fa-arrow-left"></i> Seguir comprando
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del modal del carrito de compras -->
 
     
 <script>
@@ -244,4 +336,5 @@ $(document).ready(function() {
         </div>
     </footer>
     <!-- Fin del footer -->
+
 </html>
