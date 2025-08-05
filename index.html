@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/bootstrap-3.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/myStyle.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <!-- Agrega esto en el <head> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
 
@@ -82,8 +84,8 @@
                     <li>
                          
                         <a href="#">
-                             
-                            <span class="glyphicon glyphicon-shopping-cart"> </span>Carrito
+                            <i class="fa-solid fa-cart-shopping"></i>
+                              Carrito
                         </a>
                     </li>
                 </ul>
@@ -179,37 +181,28 @@
         <div class="row">
             <div id="ofertas-container" class="col-md-12">
                 <h2 class="text-center">Ofertas</h2>
+
+                <div><!--Aqui se mostrarán las card con los productos del json por medio del script--></div>
+
             </div>
 
             <div id="biblioteca-container" class="col-md-12">
-                <h2 class="text-center">Biblioteca de Juegos</h2>   
+                <h2 class="text-center">Biblioteca de Juegos</h2> 
+
+                <div><!--Aqui se mostrarán las card con los productos del json por medio del script--></div>
+                 
             </div>
 
             <div id="populares-container" class="col-md-12">
                 <h2 class="text-center">Populares</h2>
+
+                <div><!--Aqui se mostrarán las card con los productos del json por medio del script--></div>
+                
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer-pixel">
-        <div class="container text-center">
-            <p>Pixel Play &copy; 2025 | Todos los derechos reservados</p>
-            <div class="footer-social">
-                <a href="https://facebook.com" target="_blank" title="Facebook">
-                    <span class="glyphicon glyphicon-facebook"></span>
-                </a>
-                <a href="https://twitter.com" target="_blank" title="Twitter">
-                    <span class="glyphicon glyphicon-twitter"></span>
-                </a>
-                <a href="https://instagram.com" target="_blank" title="Instagram">
-                    <span class="glyphicon glyphicon-camera"></span>
-                </a>
-            </div>
-            <p>Contacto: info@pixelplay.com</p>
-        </div>
-    </footer>
-    <!-- Fin del footer -->
+    
 <script>
 $(document).ready(function() {
     if ($(window).width() < 768) {
@@ -229,5 +222,26 @@ $(document).ready(function() {
     }
 });
 </script>
+
+<script src="js/funciones.js"></script>
 </body>
+<!-- Footer -->
+    <footer class="footer-pixel">
+        <div class="container text-center">
+            <p>Pixel Play &copy; 2025 | Todos los derechos reservados</p>
+            <div class="footer-social">
+                <a href="https://facebook.com" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" title="Twitter">
+                    <i class="fab fa-x-twitter"></i           >
+                </a>
+                <a href="https://instagram.com" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p>Contacto: info@pixelplay.com</p>
+        </div>
+    </footer>
+    <!-- Fin del footer -->
 </html>

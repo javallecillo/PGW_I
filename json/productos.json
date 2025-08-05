@@ -22,11 +22,11 @@
             "precio": 1300.00,
             "categoria": "accion",
             "plataforma": "PC",
-            "populares": true
+            "oferta": true
         },
         {
             "codigo": "P004",
-            "nombre": "FIFA 24",
+            "nombre": "FC 25",
             "precio": 1450.00,
             "categoria": "deportes",
             "plataforma": "PS5",
@@ -34,23 +34,23 @@
         },
         {
             "codigo": "P005",
-            "nombre": "FIFA 24",
+            "nombre": "FC 25",
             "precio": 1450.00,
             "categoria": "deportes",
             "plataforma": "XBOX",
-            "populares": true
+            "oferta": true
         },
         {
             "codigo": "P006",
-            "nombre": "Call of Duty: Modern Warfare III",
+            "nombre": "CoD Modern Warfare III",
             "precio": 1800.00,
             "categoria": "accion",
             "plataforma": "PS5",
-            "populares": true
+            "oferta": true
         },
         {
             "codigo": "P007",
-            "nombre": "Call of Duty: Modern Warfare III",
+            "nombre": "CoD Modern Warfare III",
             "precio": 1800.00,
             "categoria": "accion",
             "plataforma": "XBOX",
@@ -69,8 +69,7 @@
             "nombre": "Minecraft",
             "precio": 900.00,
             "categoria": "aventura",
-            "plataforma": "PS5",
-            "populares": false
+            "plataforma": "PS5"
         },
         {
             "codigo": "P010",
@@ -82,26 +81,81 @@
         },
         {
             "codigo": "P011",
-            "nombre": "The Legend of Zelda: Tears of the Kingdom",
+            "nombre": "mario",
             "precio": 1700.00,
             "categoria": "aventura",
-            "plataforma": "Nintendo Switch",
-            "populares": true
+            "plataforma": "Nintendo Switch"
         },
         {
             "codigo": "P012",
             "nombre": "Hogwarts Legacy",
             "precio": 1600.00,
             "categoria": "rpg",
-            "plataforma": "PS5",
-            "populares": true
+            "plataforma": "PS5"
         },
         {
             "codigo": "P013",
             "nombre": "Hogwarts Legacy",
             "precio": 1600.00,
             "categoria": "rpg",
+            "plataforma": "XBOX"
+        },
+
+        {
+            "codigo": "P014",
+            "nombre": "Minecraft",
+            "precio": 900.00,
+            "categoria": "aventura",
+            "plataforma": "Nintendo Switch"
+        },
+
+        {
+            "codigo": "P015",
+            "nombre": "Minecraft",
+            "precio": 900.00,
+            "categoria": "aventura",
+            "plataforma": "XBOX"
+        }, 
+
+        {
+            "codigo": "P016",
+            "nombre": "FC 25",
+            "precio": 1450.00,
+            "categoria": "deportes",
+            "plataforma": "Nintendo Switch"
+        },
+
+        {
+            "codigo": "P017",
+            "nombre": "CoD Black Ops 6",
+            "precio": 1800.00,
+            "categoria": "accion",
             "plataforma": "XBOX",
+            "populares": true
+        },
+
+        {
+            "codigo": "P018",
+            "nombre": "CoD Black Ops 6",
+            "precio": 1800.00,
+            "categoria": "accion",
+            "plataforma": "PS5"
+        },
+
+        {
+            "codigo": "P019",
+            "nombre": "Hogwarts Legacy",
+            "precio": 1600.00,
+            "categoria": "rpg",
+            "plataforma": "Nintendo Switch"
+        },
+
+        {
+            "codigo": "P020",
+            "nombre": "Mario Kart World",
+            "precio": 1200.00,
+            "categoria": "carreras",
+            "plataforma": "Nintendo Switch",
             "populares": true
         }
     ]

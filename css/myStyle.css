@@ -10,6 +10,7 @@ body, .navbar, .navbar-nav, .navbar-brand {
 }
 
 body {
+    background-color: var(--color-azul-palido);
     padding-top: 70px; /* Ajusta según el alto real de tu navbar */
     padding-bottom: 0;
 }
@@ -252,4 +253,126 @@ h2 {
 .navbar-pixel .dropdown-submenu > .dropdown-menu {
     border: none !important; /* Elimina el borde de los menús y submenús */
     box-shadow: none !important; /* Elimina cualquier sombra */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch; /* Todas las cards se estiran al alto de la más grande */
+    justify-content: flex-start;
+}
+
+.card-videojuego {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 260px;
+    margin: 0 auto 12px auto;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px 0 rgba(60, 60, 60, 0.373); /* Gris suave */
+    background-color: #ffffff;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    min-height: 410px; /* Puedes ajustar este valor si lo deseas */
+}
+
+.card-videojuego:hover {
+    /* Box-shadow azul solo en hover */
+    transform: scale(1.04);
+    box-shadow: 0 0 15px #8492fec8;
+}
+
+.card-videojuego .titulo-juego {
+    color: var(--color-azul-oscuro);
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card-videojuego .info-juego {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    justify-content: flex-start; /* Alinea el contenido a la izquierda */
+}
+
+.card-videojuego .icono-plataforma {
+    font-size: 22px;
+    color: var(--color-azul-claro);
+    vertical-align: middle;
+}
+
+.card-videojuego .icono-plataforma-img {
+    order: 2;
+    margin-right: 0;
+    margin-left: 8px;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    display: inline-block;
+    border-radius: 0;
+}
+
+.card-videojuego .categoria-juego {
+    order: 1;
+    font-weight: bold;
+    color: var(--color-azul-claro); /* tono suave azul */
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.card-videojuego .precio-juego {
+    color: var(--color-azul-oscuro);
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+}
+
+.card-videojuego .btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.btn-vermas,
+.btn-agregar {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-azul-medio);
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+    box-shadow: 0 2px 8px rgba(6,17,172,0.08);
+    border-radius: 8px !important;
+}
+
+/* Card videojuego imagen */
+.card-videojuego img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    margin: 12px auto 8px auto;
+    display: block;
+    /*box-shadow: 0 2px 8px rgba(6,17,172,0.10);*/
+    object-fit: contain; /* Ajusta la imagen sin recortarla ni deformarla */
+}
+
+/* Botones animados: color azul claro en hover */
+.card-videojuego .btn-vermas:hover,
+.card-videojuego .btn-agregar:hover {
+    background-color: var(--color-azul-claro);
+    color: #ffffff;
+    transform: scale(1.08);
 }
