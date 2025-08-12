@@ -3,6 +3,7 @@
     --color-azul-medio: #0611AC;
     --color-azul-claro: #3F56FF;
     --color-azul-palido: #E5EBFF;
+    --color-azul-variante: #7c89ed;
 }
 
 body, .navbar, .navbar-nav, .navbar-brand {
@@ -11,7 +12,7 @@ body, .navbar, .navbar-nav, .navbar-brand {
 
 body {
     background-color: var(--color-azul-palido);
-    padding-top: 70px; /* Ajusta según el alto real de tu navbar */
+    padding-top: 60px; /* Debe coincidir con la altura de la navbar */
     padding-bottom: 0;
 }
 
@@ -20,48 +21,79 @@ h2 {
     font-weight: bold;
 }
 
-.navbar {
-    background-color: var(--color-azul-oscuro) !important;
-    border: none;
-}
-
-.navbar .navbar-brand,
-.navbar .nav > li > a {
-    color: #fff !important;
-}
-
-.navbar .nav > li.active > a {
-    background-color: #1a1a40 !important;
-    color: #fff !important;
-}
-
 .navbar-pixel {
-    min-height: 70px;
-    display: block; /* Cambia flex a block para que el contenido fluya de izquierda a derecha */
-    align-items: unset;
-    justify-content: unset;
+    min-height: 60px; /* Restaura el alto original */
+    background: linear-gradient(135deg, var(--color-azul-oscuro) 0%, var(--color-azul-medio) 100%) !important;
+    border: none !important;
+    margin-bottom: 0 !important;
+    position: fixed; /* Agrega esto para que se mantenga fija */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    top: 0; /* Posición en la parte superior */
+    z-index: 1030; /* Z-index alto para que esté por encima de otros elementos */
+    overflow: visible;
+}
+
+.navbar-pixel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    animation: shimmer 8s infinite;
+    z-index: 1;
+}
+
+/* Asegura que el contenido esté por encima de la animación */
+.navbar-pixel .container-fluid,
+.navbar-pixel .navbar-header,
+.navbar-pixel .navbar-collapse,
+.navbar-pixel .navbar-nav {
+    position: relative;
+    z-index: 2;
 }
 
 .navbar-pixel .navbar-nav > li > a {
     color: #fff !important;
-    background-color: var(--color-azul-oscuro) !important;
-    height: 70px;
+    background-color: transparent !important;
+    height: 60px; /* Coincide con min-height */
     display: flex;
     align-items: center;
     font-size: 16px;
-    padding-top: 0;
-    padding-bottom: 0;
-    transition: background-color 0.3s ease; /* Animación de desvanecimiento */
+    padding: 0 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .navbar-pixel .navbar-nav > li > a:hover,
 .navbar-pixel .navbar-nav > li.active > a {
-    background-color: var(--color-azul-medio) !important;
+    background-color: rgba(255,255,255,0.15) !important;
     color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Efecto hover suave en los enlaces */
+.navbar-pixel .navbar-nav > li > a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--color-azul-claro);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-pixel .navbar-nav > li > a:hover::before {
+    width: 80%;
 }
 
 .navbar-logo {
-    height: 40px;
+    height: 35px; /* Aumenta más el tamaño del logo */
     width: auto;
     margin-right: 10px;
     display: inline-block;
@@ -79,16 +111,28 @@ h2 {
         position: absolute;
         top: 100%;
         left: 0;
+        z-index: 9999; /* Asegura que esté por encima del shimmer */
     }
     .navbar-pixel .dropdown-menu {
-        background-color: var(--color-azul-medio);
-        position: absolute;
-        top: 100%;
-        left: 0;
+        background-color: var(--color-azul-medio) !important;
+        position: absolute !important; /* Fuerza posición absoluta */
+        top: 100% !important;
+        left: 0 !important;
         min-width: 180px;
         border-radius: 0 0 6px 6px;
         box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-        z-index: 9999;
+        z-index: 9999 !important;
+        float: none !important; /* Elimina cualquier float */
+        display: none; /* Oculto por defecto */
+        border: none !important;
+        margin: 0 !important;
+    }
+    .navbar-pixel .dropdown-submenu .dropdown-menu {
+        position: absolute !important;
+        top: 0 !important;
+        left: 100% !important;
+        margin-top: 0 !important;
+        z-index: 10000 !important;
     }
     .navbar-pixel .dropdown-menu > li > a {
         color: #fff !important; /* Cambia el texto de las categorías a blanco */
@@ -143,30 +187,353 @@ h2 {
     }
 }
 
-/* Footer solo al final de la página, no fijo */
+/* Footer dinámico y animado */
 .footer-pixel {
-    background-color: var(--color-azul-oscuro);
+    background: linear-gradient(135deg, var(--color-azul-oscuro) 0%, var(--color-azul-medio) 100%);
     color: #fff;
-    padding: 30px 0 15px 0;
-    font-size: 16px;
+    padding: 50px 0 30px 0;
+    margin-top: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-pixel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
     width: 100%;
-    position: relative; /* Cambia de fixed a relative */
-    left: 0;
-    bottom: 0;
-    z-index: 1000;
-    margin-top: 40px; /* Espacio antes del footer */
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shimmer 8s infinite;
 }
 
-.footer-pixel .footer-social a {
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.footer-section {
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+
+.footer-section:hover {
+    transform: translateY(-5px);
+}
+
+.footer-toggle {
+    color: var(--color-azul-variante);
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.footer-toggle:hover {
     color: #fff;
-    margin: 0 10px;
-    font-size: 22px;
-    transition: color 0.3s;
-    text-decoration: none;
+    border-bottom-color: var(--color-azul-claro);
 }
 
-.footer-pixel .footer-social a:hover {
+.toggle-icon {
+    transition: transform 0.3s ease;
+    font-size: 14px;
+}
+
+.footer-section.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.footer-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.footer-section.active .footer-content {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.footer-content p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #f0f4ff;
+    margin-bottom: 15px;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Contador animado */
+.stats-counter {
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.counter {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-azul-variante);
+}
+
+/* Puntos de misión */
+.mission-points .point {
+    margin: 8px 0;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInLeft 0.6s ease forwards;
+}
+
+.mission-points .point:nth-child(2) { animation-delay: 0.2s; }
+.mission-points .point:nth-child(3) { animation-delay: 0.4s; }
+
+.mission-points .point i {
     color: var(--color-azul-claro);
+    margin-right: 8px;
+}
+
+/* Timeline de visión */
+.vision-timeline {
+    margin-top: 15px;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.05);
+    opacity: 0;
+    animation: fadeInRight 0.6s ease forwards;
+}
+
+.timeline-item:nth-child(2) { animation-delay: 0.3s; }
+
+.timeline-item.active {
+    background: rgba(63,86,255,0.2);
+    border-left: 3px solid var(--color-azul-claro);
+}
+
+.timeline-item .year {
+    font-weight: bold;
+    color: var(--color-azul-claro);
+    margin-right: 10px;
+}
+
+/* Contacto animado */
+.contact-item {
+    margin: 12px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.contact-item:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateX(10px);
+}
+
+.pulse-icon {
+    animation: pulse 2s infinite;
+    margin-right: 10px;
+    color: var(--color-azul-variante);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Redes sociales mejoradas */
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-btn {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    line-height: 45px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.social-btn:hover::before {
+    left: 100%;
+}
+
+.social-btn.facebook { background: var(--color-azul-claro); }
+.social-btn.twitter { background: var(--color-azul-claro); }
+.social-btn.instagram { background: linear-gradient(45deg, var(--color-azul-claro), var(--color-azul-claro), var(--color-azul-claro), var(--color-azul-claro), var(--color-azul-claro)); }
+.social-btn.discord { background: var(--color-azul-claro); }
+
+.social-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Corazón latiendo */
+.heartbeat {
+    animation: heartbeat 1.5s infinite;
+    color: #e74c3c;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Botón scroll to top */
+.scroll-to-top {
+    
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+    background: var(--color-azul-claro);
+    transform: translateY(-5px);
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsivo */
+@media (max-width: 767px) {
+    .footer-pixel {
+        padding: 30px 0 20px 0;
+        text-align: center; /* Centra todo el contenido */
+    }
+    
+    .footer-toggle {
+        font-size: 16px;
+        justify-content: center; /* Centra el título */
+    }
+    
+    .footer-content {
+        text-align: center; /* Centra el contenido */
+    }
+    
+    .footer-content p {
+        text-align: center; /* Centra los párrafos */
+    }
+    
+    .mission-points,
+    .vision-timeline {
+        text-align: center; /* Centra las listas */
+    }
+    
+    .footer-links {
+        text-align: center; /* Centra los enlaces de contacto */
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .footer-links li {
+        text-align: center; /* Centra cada elemento de contacto */
+        display: block; /* Cambia a block para mejor centrado */
+        margin: 0 auto; /* Centra el elemento */
+    }
+    
+    .contact-item {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Centra el contenido */
+        text-align: center;
+        margin: 12px auto; /* Centra el elemento */
+        max-width: 200px; /* Limita el ancho para mejor centrado */
+        transform: none !important; /* Elimina cualquier transform */
+    }
+    
+    .contact-item:hover {
+        background: rgba(255,255,255,0.1);
+        transform: none !important; /* Elimina el translateX en móvil */
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .scroll-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
 }
 
 /* Submenú de categorías */
@@ -255,7 +622,6 @@ h2 {
 }
 
 .row {
-    display: flex;
     flex-wrap: wrap;
     align-items: stretch; /* Todas las cards se estiran al alto de la más grande */
     justify-content: flex-start;
@@ -422,6 +788,14 @@ h2 {
     text-shadow: none;
 }
 
+/* Icono X del modal en blanco */
+#modalCarrito .close {
+    color: #fff !important;
+    opacity: 1;
+    font-size: 28px;
+    text-shadow: none;
+}
+
 /* Vista móvil para el modal: imagen arriba, datos abajo */
 @media (max-width: 767px) {
     #modalJuego .modal-body .modal-flex-info {
@@ -472,7 +846,6 @@ h2 {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: auto;
 }
 
 #modalCarrito .btn-cerrar-carrito:hover {
@@ -523,3 +896,75 @@ h2 {
     }
 }
 
+/* Notificación animada y con estilos mejorados */
+#notificacion-pixelplay {
+    background: var(--color-azul-medio);
+    color: #fff;
+    padding: 18px 28px;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(6,17,172,0.18);
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 0;
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 9999;
+    min-width: 220px;
+    pointer-events: none;
+    transition: opacity 0.5s, transform 0.5s;
+    transform: translateY(-30px) scale(0.98);
+}
+#notificacion-pixelplay.show {
+    opacity: 0.97;
+    transform: translateY(0) scale(1);
+}
+
+/* Texto grande para el tipo de acción, nombre del juego más pequeño */
+#notificacion-pixelplay .notif-titulo {
+    font-size: 22px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+}
+#notificacion-pixelplay .notif-nombre {
+    font-size: 16px;
+    font-weight: normal;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Input cantidad en la tabla del carrito con estilo suave */
+.input-cantidad-carrito {
+    border: 1.5px solid var(--color-azul-claro);
+    border-radius: 10px;
+    padding: 4px 8px;
+    font-size: 15px;
+    background: #f7faff;
+    color: var(--color-azul-oscuro);
+    box-shadow: 0 1px 6px rgba(6,17,172,0.08);
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+    text-align: center;
+}
+.input-cantidad-carrito:focus {
+    border-color: var(--color-azul-medio);
+    box-shadow: 0 2px 10px rgba(6,17,172,0.15);
+}
+
+/* Evita que los botones queden grises al hacer clic (active/focus) */
+.btn-vermas:active,
+.btn-vermas:focus,
+.btn-agregar:active,
+.btn-agregar:focus,
+#modalJuego .btn-agregar:active,
+#modalJuego .btn-agregar:focus,
+#modalJuego .btn-default[data-dismiss="modal"]:active,
+#modalJuego .btn-default[data-dismiss="modal"]:focus {
+    background-color: var(--color-azul-medio) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(6,17,172,0.08);
+    outline: none;
+    border: none;
+    transform: none;
+}

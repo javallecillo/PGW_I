@@ -44,59 +44,6 @@ function agregarAlCarrito(producto) {
     actualizarCarritoModal();
 }
 
-// Evento para los botones de agregar al carrito (cards y modal)
-document.addEventListener('click', function(e) {
-    // Botón de las cards
-    if (e.target.closest('.btn-agregar')) {
-        e.preventDefault();
-        const btn = e.target.closest('.btn-agregar');
-        // Si está en el modal, busca los datos en el modal
-        if (btn.id === "modalAgregarBtn") {
-            const nombre = document.querySelector('#modalJuegoInfo h2').textContent;
-            const categoria = document.querySelector('#modalJuegoInfo span').textContent.trim();
-            const plataforma = document.querySelector('#modalJuegoInfo img.icono-plataforma-img').title;
-            const precio = parseFloat(document.querySelector('#modalJuegoInfo p').textContent.replace('L.','').trim());
-            agregarAlCarrito({nombre, categoria, plataforma, precio});
-        } else {
-            // Si está en la card
-            const nombre = btn.getAttribute('data-nombre') || btn.closest('.card-videojuego').querySelector('.titulo-juego').textContent;
-            const categoria = btn.getAttribute('data-categoria') || btn.closest('.card-videojuego').querySelector('.categoria-juego').textContent;
-            const plataforma = btn.getAttribute('data-plataforma') || btn.closest('.card-videojuego').querySelector('.icono-plataforma-img').title;
-            const precio = parseFloat(btn.getAttribute('data-precio')) || parseFloat(btn.closest('.card-videojuego').querySelector('.precio-juego').textContent.replace('L.','').trim());
-            agregarAlCarrito({nombre, categoria, plataforma, precio});
-        }
-    }
-
-    // Botón carrito en navbar (ahora el evento se activa en todo el botón)
-    const carritoBtn = e.target.closest('.btn-carrito-navbar');
-    if (carritoBtn) {
-        e.preventDefault();
-        actualizarCarritoModal();
-        $('#modalCarrito').modal('show');
-    }
-
-    // Botón eliminar producto del carrito
-    if (e.target.classList.contains('btn-eliminar-carrito')) {
-        const idx = parseInt(e.target.getAttribute('data-idx'));
-        carrito.splice(idx, 1);
-        actualizarCarritoModal();
-    }
-
-    // Oculta el menú en móvil al seleccionar consola o categoría
-    if (window.innerWidth < 768) {
-        if (
-            e.target.classList.contains('filtro-consola') ||
-            e.target.classList.contains('filtro-categoria') ||
-            e.target.classList.contains('btn-inicio') ||
-            e.target.classList.contains('btn-biblioteca') ||
-            e.target.classList.contains('btn-ofertas') ||
-            e.target.classList.contains('btn-populares')
-        ) {
-            $('.navbar-collapse').collapse('hide');
-        }
-    }
-});
-
 // Actualiza el contenido del modal del carrito
 function actualizarCarritoModal() {
     const tbody = document.querySelector('#tablaCarrito tbody');
@@ -110,12 +57,34 @@ function actualizarCarritoModal() {
                 <td>${p.plataforma}</td>
                 <td>${p.categoria}</td>
                 <td>L. ${p.precio.toFixed(2)}</td>
-                <td>${p.cantidad}</td>
+                <td>
+                    <input type="number" min="1" value="${p.cantidad}" class="input-cantidad-carrito" data-idx="${idx}" style="width:50px; text-align:center;">
+                </td>
                 <td><button class="btn btn-danger btn-eliminar-carrito" data-idx="${idx}"><i class="fa fa-trash"></i></button></td>
             </tr>
         `;
     });
     document.getElementById('totalCarrito').textContent = `L. ${total.toFixed(2)}`;
+    actualizarCarritoCount();
+}
+
+// Actualiza el contador del carrito en el navbar
+function actualizarCarritoCount() {
+    const count = carrito.reduce((acc, p) => acc + p.cantidad, 0);
+    document.getElementById('carrito-count').textContent = count;
+}
+
+// Notificación simple
+function mostrarNotificacion(mensaje, tipo = "info") {
+    const notif = document.getElementById('notificacion-pixelplay');
+    notif.textContent = mensaje;
+    notif.style.background = tipo === "error" ? "#d9534f" : (tipo === "success" ? "#3F56FF" : "var(--color-azul-medio)");
+    notif.style.display = "block";
+    notif.style.opacity = "0.95";
+    setTimeout(() => {
+        notif.style.opacity = "0";
+        setTimeout(() => { notif.style.display = "none"; }, 400);
+    }, 1800);
 }
 
 function cargarProductos() {
@@ -280,59 +249,150 @@ function mostrarSoloPopulares() {
 document.addEventListener('DOMContentLoaded', function() {
     cargarProductos();
 
-    // Filtro solo por consola
-    document.querySelectorAll('.filtro-consola').forEach(el => {
-        el.addEventListener('click', function(e) {
-            e.preventDefault();
-            const consola = this.getAttribute('data-consola');
-            filtrarPorConsola(consola);
-        });
-    });
-
-    // Filtro por consola y categoría
-    document.querySelectorAll('.filtro-categoria').forEach(el => {
-        el.addEventListener('click', function(e) {
-            e.preventDefault();
-            const consola = this.closest('.dropdown-submenu').querySelector('.filtro-consola').getAttribute('data-consola');
-            const categoria = this.getAttribute('data-categoria');
-            filtrarPorConsolaYCategoria(consola, categoria);
-        });
-    });
-
-    // Botón Inicio
-    const btnInicio = document.querySelector('.btn-inicio');
-    if (btnInicio) {
-        btnInicio.addEventListener('click', function(e) {
+    // Delegación para todos los clicks relevantes
+    document.body.addEventListener('click', function(e) {
+        // Botón Inicio
+        if (e.target.closest('.btn-inicio')) {
             e.preventDefault();
             mostrarTodasSecciones();
-        });
-    }
-
-    // Botón Biblioteca
-    const btnBiblioteca = document.querySelector('.btn-biblioteca');
-    if (btnBiblioteca) {
-        btnBiblioteca.addEventListener('click', function(e) {
+            ocultarMenuMovil();
+        }
+        // Botón Biblioteca
+        else if (e.target.closest('.btn-biblioteca')) {
             e.preventDefault();
             mostrarSoloBiblioteca();
-        });
-    }
-
-    // Botón Ofertas
-    const btnOfertas = document.querySelector('.btn-ofertas');
-    if (btnOfertas) {
-        btnOfertas.addEventListener('click', function(e) {
+            ocultarMenuMovil();
+        }
+        // Botón Ofertas
+        else if (e.target.closest('.btn-ofertas')) {
             e.preventDefault();
             mostrarSoloOfertas();
-        });
-    }
-
-    // Botón Populares
-    const btnPopulares = document.querySelector('.btn-populares');
-    if (btnPopulares) {
-        btnPopulares.addEventListener('click', function(e) {
+            ocultarMenuMovil();
+        }
+        // Botón Populares
+        else if (e.target.closest('.btn-populares')) {
             e.preventDefault();
             mostrarSoloPopulares();
-        });
+            ocultarMenuMovil();
+        }
+        // Filtro por consola
+        else if (e.target.closest('.filtro-consola')) {
+            e.preventDefault();
+            const consola = e.target.closest('.filtro-consola').getAttribute('data-consola');
+            filtrarPorConsola(consola);
+            ocultarMenuMovil();
+        }
+        // Filtro por consola y categoría
+        else if (e.target.closest('.filtro-categoria')) {
+            e.preventDefault();
+            const categoriaEl = e.target.closest('.filtro-categoria');
+            const submenu = categoriaEl.closest('.dropdown-submenu');
+            const consola = submenu.querySelector('.filtro-consola').getAttribute('data-consola');
+            const categoria = categoriaEl.getAttribute('data-categoria');
+            filtrarPorConsolaYCategoria(consola, categoria);
+            ocultarMenuMovil();
+        }
+        // Botón carrito en navbar
+        else if (e.target.closest('.btn-carrito-navbar')) {
+            e.preventDefault();
+            actualizarCarritoModal();
+            $('#modalCarrito').modal('show');
+            ocultarMenuMovil();
+        }
+        // Botón eliminar producto del carrito
+            else if (e.target.closest('.btn-eliminar-carrito')) {
+            e.preventDefault();
+            const btn = e.target.closest('.btn-eliminar-carrito');
+            const idx = parseInt(btn.getAttribute('data-idx'));
+            const nombre = carrito[idx].nombre;
+            carrito.splice(idx, 1);
+            actualizarCarritoModal();
+            mostrarNotificacion("Producto eliminado", "error", nombre);
+        }
+        // Botón ver más
+        else if (e.target.closest('.btn-vermas')) {
+            e.preventDefault();
+            const btn = e.target.closest('.btn-vermas');
+            const nombre = btn.getAttribute('data-nombre');
+            const categoria = btn.getAttribute('data-categoria');
+            const plataforma = btn.getAttribute('data-plataforma');
+            const precio = btn.getAttribute('data-precio');
+            const imagenBig = `img/${plataforma}/${nombre}_big.jpg`;
+            const imagenPlataforma = `img/${plataforma}/${plataforma}.png`;
+
+            document.getElementById('modalJuegoLabel').textContent = "Información del producto";
+            document.getElementById('modalJuegoImg').src = imagenBig;
+            document.getElementById('modalJuegoImg').alt = nombre;
+            document.getElementById('modalJuegoInfo').innerHTML = `
+                <div class="modal-flex-info" style="display: flex; align-items: center; justify-content: center;">
+                    <img src="${imagenBig}" alt="${nombre}" style="max-width: 220px; max-height: 320px; border-radius: 10px; margin-right: 24px;">
+                    <div style="text-align: left;">
+                        <h2 style="font-size: 30px; font-weight: bold; color: var(--color-azul-oscuro); margin-bottom: 10px;">${nombre}</h2>
+                        <span style="display: block; font-weight: bold; color: var(--color-azul-claro); font-size: 22px; margin-bottom: 10px;">
+                            ${categoria.charAt(0).toUpperCase() + categoria.slice(1)}
+                            <img class="icono-plataforma-img" src="${imagenPlataforma}" alt="${plataforma}" title="${plataforma}" style="width:32px;height:32px;object-fit:contain;margin-left:12px;vertical-align:middle;">
+                        </span>
+                        <p style="font-size: 26px; color: var(--color-azul-oscuro); font-weight: bold; margin: 18px 0 0 0;">
+                            L. ${parseFloat(precio).toFixed(2)}
+                        </p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('modalJuegoImg').style.display = 'none';
+            $('#modalJuego').modal('show');
+        }
+        // Botón agregar al carrito
+        else if (e.target.closest('.btn-agregar')) {
+            e.preventDefault();
+            const btn = e.target.closest('.btn-agregar');
+            let nombre, categoria, plataforma, precio;
+            if (btn.id === "modalAgregarBtn") {
+                nombre = document.querySelector('#modalJuegoInfo h2').textContent;
+                categoria = document.querySelector('#modalJuegoInfo span').textContent.trim();
+                plataforma = document.querySelector('#modalJuegoInfo img.icono-plataforma-img').title;
+                precio = parseFloat(document.querySelector('#modalJuegoInfo p').textContent.replace('L.','').trim());
+            } else {
+                nombre = btn.getAttribute('data-nombre') || btn.closest('.card-videojuego').querySelector('.titulo-juego').textContent;
+                categoria = btn.getAttribute('data-categoria') || btn.closest('.card-videojuego').querySelector('.categoria-juego').textContent;
+                plataforma = btn.getAttribute('data-plataforma') || btn.closest('.card-videojuego').querySelector('.icono-plataforma-img').title;
+                precio = parseFloat(btn.getAttribute('data-precio')) || parseFloat(btn.closest('.card-videojuego').querySelector('.precio-juego').textContent.replace('L.','').trim());
+            }
+            agregarAlCarrito({nombre, categoria, plataforma, precio});
+            mostrarNotificacion(`Producto agregado: ${nombre}`, "success");
+        }
+    });
+
+    // Evento para cambio de cantidad con el input
+    document.body.addEventListener('input', function(e) {
+        if (e.target.classList.contains('input-cantidad-carrito')) {
+            const idx = parseInt(e.target.getAttribute('data-idx'));
+            let nuevaCantidad = parseInt(e.target.value);
+            if (isNaN(nuevaCantidad) || nuevaCantidad < 1) nuevaCantidad = 1;
+            carrito[idx].cantidad = nuevaCantidad;
+            actualizarCarritoModal();
+            mostrarNotificacion(`Cantidad modificada: ${carrito[idx].nombre} (${nuevaCantidad})`, "info");
+        }
+    });
+
+    // Función para ocultar el menú en móvil
+    function ocultarMenuMovil() {
+        if (window.innerWidth < 768) {
+            $('.navbar-collapse').collapse('hide');
+        }
+    }
+});
+
+document.addEventListener('change', function(e) {
+    if (e.target.classList.contains('input-cantidad-carrito')) {
+        const idx = parseInt(e.target.getAttribute('data-idx'));
+        let nuevaCantidad = parseInt(e.target.value);
+        if (isNaN(nuevaCantidad) || nuevaCantidad < 1) {
+            nuevaCantidad = 1;
+            e.target.value = 1;
+        }
+        carrito[idx].cantidad = nuevaCantidad;
+        actualizarCarritoModal();
+        mostrarNotificacion("Cantidad modificada", "info", `${carrito[idx].nombre} (${nuevaCantidad})`);
     }
 });
 
@@ -374,5 +434,105 @@ document.addEventListener('click', function(e) {
 
         // Muestra el modal
         $('#modalJuego').modal('show');
+    }
+});
+
+// Footer dinámico
+document.addEventListener('DOMContentLoaded', function() {
+    // Acordeón del footer
+    document.querySelectorAll('.footer-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const section = this.closest('.footer-section');
+            const isActive = section.classList.contains('active');
+            
+            // Cierra todas las secciones
+            document.querySelectorAll('.footer-section').forEach(s => s.classList.remove('active'));
+            
+            // Abre la sección actual si no estaba activa
+            if (!isActive) {
+                section.classList.add('active');
+            }
+        });
+    });
+
+    // Contador animado
+    function animateCounter() {
+        const counter = document.querySelector('.counter');
+        if (counter) {
+            const target = parseInt(counter.getAttribute('data-target'));
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                counter.textContent = Math.floor(current).toLocaleString();
+            }, 20);
+        }
+    }
+
+    // Intersection Observer para activar animaciones
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('footer-pixel')) {
+                    setTimeout(animateCounter, 500);
+                }
+            }
+        });
+    });
+
+    const footer = document.querySelector('.footer-pixel');
+    if (footer) observer.observe(footer);
+
+    // Scroll to top
+    const scrollBtn = document.getElementById('scrollToTop');
+    if (scrollBtn) {
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+
+        scrollBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Efectos en contacto
+    document.querySelectorAll('.contact-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const type = this.getAttribute('data-type');
+            const text = this.querySelector('span').textContent;
+            
+            if (type === 'email') {
+                window.location.href = `mailto:${text}`;
+            } else if (type === 'phone') {
+                window.location.href = `tel:${text}`;
+            }
+            
+            mostrarNotificacion(`Contacto copiado`, "info", text);
+        });
+    });
+
+    // Tooltips para redes sociales
+    document.querySelectorAll('.social-btn').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            const platform = this.getAttribute('data-platform');
+            mostrarNotificacion(`Síguenos en ${platform}`, "info");
+        });
+    });
+
+    // Año actual
+    const yearSpan = document.querySelector('.current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
     }
 });

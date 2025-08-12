@@ -104,9 +104,11 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        <!-- Reemplaza el botón del carrito en tu navbar por este -->
                         <a href="#" class="btn-carrito-navbar">
                             <i class="fa-solid fa-cart-shopping"></i>
                             &nbsp;Carrito
+                            <span id="carrito-count" class="badge" style="background:var(--color-azul-claro); color:#fff; font-size:13px; margin-left:6px;">0</span>
                         </a>
                     </li>
                 </ul>
@@ -318,23 +320,126 @@ $(document).ready(function() {
 <script src="js/funciones.js"></script>
 </body>
 <!-- Footer -->
-    <footer class="footer-pixel">
-        <div class="container text-center">
-            <p>Pixel Play &copy; 2025 | Todos los derechos reservados</p>
-            <div class="footer-social">
-                <a href="https://facebook.com" target="_blank" title="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://twitter.com" target="_blank" title="Twitter">
-                    <i class="fab fa-x-twitter"></i           >
-                </a>
-                <a href="https://instagram.com" target="_blank" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
+<!-- Footer con contenido dinámico y acordeón -->
+<footer class="footer-pixel">
+    <div class="container">
+        <div class="row">
+            <!-- Quiénes Somos -->
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-section" data-section="quienes">
+                    <h4 class="footer-toggle">
+                        <i class="fa fa-users"></i> Quiénes Somos 
+                        <i class="fa fa-chevron-down toggle-icon"></i>
+                    </h4>
+                    <div class="footer-content">
+                        <p>Pixel Play es tu tienda de videojuegos de confianza. Desde 2020, nos dedicamos a ofrecer los mejores títulos para todas las plataformas, brindando experiencias únicas a gamers de todas las edades.</p>
+                        <div class="stats-counter">
+                            <span class="counter" data-target="650">0</span>+ Gamers felices
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p>Contacto: info@pixelplay.com</p>
+            
+            <!-- Misión -->
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-section" data-section="mision">
+                    <h4 class="footer-toggle">
+                        <i class="fa fa-flag"></i> Nuestra Misión 
+                        <i class="fa fa-chevron-down toggle-icon"></i>
+                    </h4>
+                    <div class="footer-content">
+                        <p>Conectar a los amantes de los videojuegos con las mejores experiencias digitales, ofreciendo productos de calidad, precios competitivos y un servicio al cliente excepcional.</p>
+                        <div class="mission-points">
+                            <div class="point"><i class="fa fa-check-circle"></i> Calidad garantizada</div>
+                            <div class="point"><i class="fa fa-check-circle"></i> Precios competitivos</div>
+                            <div class="point"><i class="fa fa-check-circle"></i> Servicio excepcional</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visión -->
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-section" data-section="vision">
+                    <h4 class="footer-toggle">
+                        <i class="fa fa-lightbulb"></i> Nuestra Visión 
+                        <i class="fa fa-chevron-down toggle-icon"></i>
+                    </h4>
+                    <div class="footer-content">
+                        <p>Ser la tienda de videojuegos líder en Latinoamérica, reconocida por nuestra innovación, variedad de productos y compromiso con la comunidad gamer.</p>
+                        <div class="vision-timeline">
+                            <div class="timeline-item active">
+                                <span class="year">2024</span>
+                                <span class="goal">Expansión regional</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="year">2025</span>
+                                <span class="goal">Líder en Centroamérica</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contacto -->
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-section" data-section="contacto">
+                    <h4 class="footer-toggle">
+                        <i class="fa fa-phone"></i> Contacto 
+                        <i class="fa fa-chevron-down toggle-icon"></i>
+                    </h4>
+                    <div class="footer-content">
+                        <ul class="footer-links">
+                            <li class="contact-item" data-type="email">
+                                <i class="fa fa-envelope pulse-icon"></i> 
+                                <span>info@pixelplay.com</span>
+                            </li>
+                            <li class="contact-item" data-type="phone">
+                                <i class="fa fa-phone pulse-icon"></i> 
+                                <span>+504 2643-5678</span>
+                            </li>
+                            <li class="contact-item" data-type="location">
+                                <i class="fa fa-location-dot pulse-icon"></i> 
+                                <span>Santa Bárbara, Honduras</span>
+                            </li>
+                        </ul>
+                        <div class="social-links">
+                            <a href="#" class="social-btn facebook" data-platform="Facebook">
+                                <i class="fa-brands fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-btn twitter" data-platform="Twitter">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-btn instagram" data-platform="Instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-btn discord" data-platform="Discord">
+                                <i class="fa-brands fa-discord"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
-    <!-- Fin del footer -->
+        
+        <hr class="footer-divider">
+        
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="footer-bottom">
+                    <p class="copyright-text">
+                         &copy; <span class="current-year">2024</span> Pixel Play. Todos los derechos reservados.<!-- | 
+                        Hecho con <i class="fa fa-heart heartbeat"></i> para gamers -->
+                    </p>
+                    <!-- <div class="scroll-to-top" id="scrollToTop">
+                        <i class="fa fa-chevron-up"></i>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Fin del footer -->
 
+    <div id="notificacion-pixelplay" style="position:fixed; top:80px; right:20px; z-index:9999; min-width:200px; display:none;"></div>
 </html>
