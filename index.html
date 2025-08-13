@@ -102,9 +102,19 @@
                         </ul>
                     </li>
                 </ul>
+                
                 <ul class="nav navbar-nav navbar-right">
+
+                    <!-- Boton agregar nuevo producto -->
                     <li>
-                        <!-- Reemplaza el botón del carrito en tu navbar por este -->
+                        <a href="#" class="btn-agregar-producto-navbar">
+                            <i class="fa-solid fa-plus-circle"></i>
+                            &nbsp;Agregar Producto
+                        </a>
+                    </li>
+
+                    <!-- Boton carrito de compras -->
+                    <li>
                         <a href="#" class="btn-carrito-navbar">
                             <i class="fa-solid fa-cart-shopping"></i>
                             &nbsp;Carrito
@@ -249,7 +259,7 @@
                 <button type="button" class="btn btn-agregar" id="modalAgregarBtn">
                 <i class="fa-solid fa-cart-plus"></i> Agregar al carrito
                 </button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa-solid fa-times"></i>Cerrar</button>
             </div>
             </div>
         </div>
@@ -295,6 +305,115 @@
         </div>
     </div>
     <!-- Fin del modal del carrito de compras -->
+
+    <!-- Modal para agregar productos nuevos -->
+    <div class="modal fade" id="modalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="modalAgregarProductoLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: var(--color-azul-medio); color: #fff;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalAgregarProductoLabel">Agregar Nuevo Producto</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="formAgregarProducto">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nombreProducto">Nombre del Juego *</label>
+                                    <input type="text" class="form-control" id="nombreProducto" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="precioProducto">Precio (L.) *</label>
+                                    <input type="number" class="form-control" id="precioProducto" step="0.01" min="0" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="plataformaProducto">Plataforma *</label>
+                                    <select class="form-control" id="plataformaProducto" required>
+                                        <option value="">Seleccionar plataforma</option>
+                                        <option value="PS5">PlayStation 5</option>
+                                        <option value="XBOX">Xbox Series X/S</option>
+                                        <option value="Nintendo Switch">Nintendo Switch</option>
+                                        <option value="PC">PC</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="categoriaProducto">Categoría *</label>
+                                    <select class="form-control" id="categoriaProducto" required>
+                                        <option value="">Seleccionar categoría</option>
+                                        <option value="accion">Acción</option>
+                                        <option value="aventura">Aventura</option>
+                                        <option value="deportes">Deportes</option>
+                                        <option value="rpg">RPG</option>
+                                        <option value="carreras">Carreras</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="ofertaProducto"> En oferta
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="popularProducto"> Producto popular
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Nuevos campos para imágenes -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="imagenPortada">Imagen de Portada *</label>
+                                    <input type="file" class="form-control" id="imagenPortada" accept="image/*" required>
+                                    <div class="preview-container" id="previewPortada"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="imagenBig">Imagen Grande *</label>
+                                    <input type="file" class="form-control" id="imagenBig" accept="image/*" required>
+                                    <div class="preview-container" id="previewBig"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="justify-content: center;">
+                    <button type="button" class="btn btn-agregar" id="btnGuardarProducto">
+                        <i class="fa-solid fa-save"></i> Guardar Producto
+                    </button>
+                    
+                    <button type="button" class="btn btn-default btn-cerrar-carrito" data-dismiss="modal">
+                        <i class="fa-solid fa-times"></i> Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fin modal agregar producto-->
 
     
 <script>
@@ -441,5 +560,6 @@ $(document).ready(function() {
 </footer>
 <!-- Fin del footer -->
 
+<!-- Notificación -->
     <div id="notificacion-pixelplay" style="position:fixed; top:80px; right:20px; z-index:9999; min-width:200px; display:none;"></div>
 </html>

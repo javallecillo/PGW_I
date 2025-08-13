@@ -536,3 +536,155 @@ document.addEventListener('DOMContentLoaded', function() {
         yearSpan.textContent = new Date().getFullYear();
     }
 });
+
+// Evento para abrir el modal de agregar producto
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.btn-agregar-producto-navbar')) {
+        e.preventDefault();
+        $('#modalAgregarProducto').modal('show');
+        ocultarMenuMovil();
+    }
+    
+    // Evento para guardar el producto
+    if (e.target.closest('#btnGuardarProducto')) {
+        e.preventDefault();
+        guardarNuevoProducto();
+    }
+});
+
+// Función para guardar nuevo producto
+function guardarNuevoProducto() {
+    const nombre = document.getElementById('nombreProducto').value.trim();
+    const precio = parseFloat(document.getElementById('precioProducto').value);
+    const plataforma = document.getElementById('plataformaProducto').value;
+    const categoria = document.getElementById('categoriaProducto').value;
+    const oferta = document.getElementById('ofertaProducto').checked;
+    const popular = document.getElementById('popularProducto').checked;
+    const imagenPortada = document.getElementById('imagenPortada').files[0];
+    const imagenBig = document.getElementById('imagenBig').files[0];
+    
+    // Validaciones
+    if (!nombre || !precio || !plataforma || !categoria || !imagenPortada || !imagenBig) {
+        mostrarNotificacion("Complete todos los campos obligatorios", "error");
+        return;
+    }
+    
+    if (precio <= 0) {
+        mostrarNotificacion("El precio debe ser mayor a 0", "error");
+        return;
+    }
+    
+    // Procesar las imágenes
+    procesarImagenes(imagenPortada, imagenBig, nombre, plataforma).then(() => {
+        // Crear el nuevo producto
+        const nuevoProducto = {
+            nombre: nombre,
+            precio: precio,
+            plataforma: plataforma,
+            categoria: categoria,
+            oferta: oferta,
+            populares: popular
+        };
+        
+        // Agregar al array global
+        productosOrdenadosGlobal.push(nuevoProducto);
+        
+        // Recargar las secciones
+        renderizarSecciones();
+        
+        // Limpiar formulario
+        document.getElementById('formAgregarProducto').reset();
+        limpiarPreviews();
+        
+        // Cerrar modal y mostrar notificación
+        $('#modalAgregarProducto').modal('hide');
+        mostrarNotificacion("Producto agregado exitosamente", "success", nombre);
+    }).catch(error => {
+        mostrarNotificacion("Error al procesar las imágenes", "error");
+        console.error(error);
+    });
+}
+
+// Función para procesar las imágenes
+async function procesarImagenes(imagenPortada, imagenBig, nombre, plataforma) {
+    return new Promise((resolve, reject) => {
+        try {
+            // Simular guardado de imágenes
+            // En un entorno real, aquí subirías las imágenes al servidor
+            
+            // Por ahora, creamos URLs temporales para mostrar las imágenes
+            const urlPortada = URL.createObjectURL(imagenPortada);
+            const urlBig = URL.createObjectURL(imagenBig);
+            
+            // Aquí podrías implementar la lógica para:
+            // 1. Renombrar los archivos según el patrón: nombre.jpg y nombre_big.jpg
+            // 2. Subirlos a la carpeta img/[plataforma]/
+            // 3. Validar que sean imágenes válidas
+            
+            console.log(`Imágenes procesadas para ${nombre}:`);
+            console.log(`Portada: ${urlPortada}`);
+            console.log(`Grande: ${urlBig}`);
+            
+            resolve();
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
+// Eventos para preview de imágenes
+document.addEventListener('change', function(e) {
+    if (e.target.id === 'imagenPortada') {
+        mostrarPreview(e.target, 'previewPortada');
+    } else if (e.target.id === 'imagenBig') {
+        mostrarPreview(e.target, 'previewBig');
+    }
+});
+
+function mostrarPreview(input, previewId) {
+    const preview = document.getElementById(previewId);
+    
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+            preview.classList.remove('empty');
+        };
+        
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        preview.innerHTML = 'Vista previa de la imagen';
+        preview.classList.add('empty');
+    }
+}
+
+function limpiarPreviews() {
+    document.getElementById('previewPortada').innerHTML = 'Vista previa de la imagen';
+    document.getElementById('previewPortada').classList.add('empty');
+    document.getElementById('previewBig').innerHTML = 'Vista previa de la imagen';
+    document.getElementById('previewBig').classList.add('empty');
+}
+
+// Inicializar previews vacíos al cargar
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar previews
+    const previewPortada = document.getElementById('previewPortada');
+    const previewBig = document.getElementById('previewBig');
+    
+    if (previewPortada) {
+        previewPortada.innerHTML = 'Vista previa de la imagen';
+        previewPortada.classList.add('empty');
+    }
+    
+    if (previewBig) {
+        previewBig.innerHTML = 'Vista previa de la imagen';
+        previewBig.classList.add('empty');
+    }
+});
+
+// Actualizar el evento para limpiar el formulario
+$('#modalAgregarProducto').on('hidden.bs.modal', function () {
+    document.getElementById('formAgregarProducto').reset();
+    limpiarPreviews();
+});

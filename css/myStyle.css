@@ -968,3 +968,85 @@ h2 {
     border: none;
     transform: none;
 }
+
+/* Estilos para el modal de agregar producto */
+#modalAgregarProducto .form-control {
+    border: 1.5px solid var(--color-azul-claro);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    background: #f9fbff;
+    color: var(--color-azul-oscuro);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#modalAgregarProducto .form-control:focus {
+    border-color: var(--color-azul-medio);
+    box-shadow: 0 0 8px rgba(6,17,172,0.15);
+    outline: none;
+}
+
+#modalAgregarProducto .form-group label {
+    font-weight: bold;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 5px;
+}
+
+#modalAgregarProducto .checkbox label {
+    font-weight: normal;
+    color: var(--color-azul-medio);
+}
+
+/* Estilos adicionales para preview de imágenes */
+#modalAgregarProducto .preview-container {
+    margin-top: 10px;
+    border: 2px dashed var(--color-azul-claro);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9fbff;
+}
+
+#modalAgregarProducto .preview-container img {
+    max-width: 100%;
+    max-height: 120px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#modalAgregarProducto .preview-container.empty {
+    color: var(--color-azul-claro);
+    font-size: 14px;
+}
+
+#modalAgregarProducto input[type="file"] {
+    border: 1.5px solid var(--color-azul-claro);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    background: #f9fbff;
+    transition: border-color 0.3s;
+}
+
+#modalAgregarProducto input[type="file"]:focus {
+    border-color: var(--color-azul-medio);
+    box-shadow: 0 0 8px rgba(6,17,172,0.15);
+    outline: none;
+}
+
+/* Modal más ancho para el formulario */
+#modalAgregarProducto .modal-dialog {
+    width: 600px;
+    max-width: 90vw;
+}
+
+@media (max-width: 767px) {
+    #modalAgregarProducto .modal-dialog {
+        width: 98vw;
+        margin: 10px auto;
+    }
+}
