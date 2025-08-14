@@ -191,7 +191,7 @@
         },
         {
             "codigo": "P022",
-            "nombre": "Red Dead Redemption 2",
+            "nombre": "Red Dead Redemp. 2",
             "precio": 1400.00,
             "categoria": "accion",
             "plataforma": "PS5",
@@ -236,7 +236,7 @@
         },
         {
             "codigo": "P027",
-            "nombre": "Horizon Forbidden West",
+            "nombre": "Horizon Forbidden",
             "precio": 1700.00,
             "categoria": "accion",
             "plataforma": "PS5",
@@ -308,12 +308,12 @@
         },
         {
             "codigo": "P035",
-            "nombre": "Sekiro Shadows Die Twice",
-            "precio": 1500.00,
+            "nombre": "The Last of Us Part I",
+            "precio": 1450.00,
             "categoria": "aventura",
             "plataforma": "PS5",
-            "populares": true,
-            "oferta": false
+            "populares": false,
+            "oferta": true
         },
         {
             "codigo": "P036",
@@ -345,7 +345,7 @@
         {
             "codigo": "P039",
             "nombre": "eFootball 2025",
-            "precio": 0.00,
+            "precio": 900.00,
             "categoria": "deportes",
             "plataforma": "PC",
             "populares": true,
@@ -371,7 +371,7 @@
         },
         {
             "codigo": "P042",
-            "nombre": "Zelda: Breath of the Wild",
+            "nombre": "Zelda Breath of the...",
             "precio": 1500.00,
             "categoria": "aventura",
             "plataforma": "Nintendo Switch",
@@ -380,7 +380,7 @@
         },
         {
             "codigo": "P043",
-            "nombre": "Assassin's Creed Valhalla",
+            "nombre": "Assassin's Creed V...",
             "precio": 1300.00,
             "categoria": "aventura",
             "plataforma": "PS5",
@@ -389,7 +389,7 @@
         },
         {
             "codigo": "P044",
-            "nombre": "Red Dead Redemption 2",
+            "nombre": "Red Dead Redemp. 2",
             "precio": 1400.00,
             "categoria": "aventura",
             "plataforma": "PC",
@@ -434,7 +434,7 @@
         },
         {
             "codigo": "P049",
-            "nombre": "Star Wars Jedi Fallen Order",
+            "nombre": "Star Wars Jedi",
             "precio": 1050.00,
             "categoria": "aventura",
             "plataforma": "PC",
@@ -458,6 +458,15 @@
             "plataforma": "Nintendo Switch",
             "populares": false,
             "oferta": true
+        },
+        {
+            "codigo": "P052",
+            "nombre": "Sekiro Shadows Die",
+            "precio": 1500.00,
+            "categoria": "aventura",
+            "plataforma": "PS5",
+            "populares": true,
+            "oferta": false
         }
     ]
 }

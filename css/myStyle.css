@@ -12,7 +12,7 @@ body, .navbar, .navbar-nav, .navbar-brand {
 
 body {
     background-color: var(--color-azul-palido);
-    padding-top: 60px; /* Debe coincidir con la altura de la navbar */
+    padding-top: 70px; /* Debe coincidir con la altura de la navbar */
     padding-bottom: 0;
 }
 
@@ -22,7 +22,7 @@ h2 {
 }
 
 .navbar-pixel {
-    min-height: 60px; /* Restaura el alto original */
+    min-height: 70px; /* Restaura el alto original */
     background: linear-gradient(135deg, var(--color-azul-oscuro) 0%, var(--color-azul-medio) 100%) !important;
     border: none !important;
     margin-bottom: 0 !important;
@@ -57,7 +57,7 @@ h2 {
 .navbar-pixel .navbar-nav > li > a {
     color: #fff !important;
     background-color: transparent !important;
-    height: 60px; /* Coincide con min-height */
+    height: 70px; /* Coincide con min-height */
     display: flex;
     align-items: center;
     font-size: 16px;
@@ -435,6 +435,910 @@ h2 {
 .scroll-to-top:hover {
     background: var(--color-azul-claro);
     transform: translateY(-5px);
+}
+
+/* Estilos para el campo de búsqueda */
+
+/* Campo de búsqueda desktop - ACTUALIZADO */
+.search-box .form-control {
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 25px 0 0 25px;
+    background: var(--color-azul-medio); /* Cambiado a azul claro por defecto */
+    color: #fff; /* Texto blanco por defecto */
+    font-size: 14px;
+    padding: 8px 15px;
+    height: 38px; /* Altura fija para que coincida con el botón */
+    transition: all 0.3s ease;
+}
+
+.search-box .form-control::placeholder {
+    color: rgba(255,255,255,0.8); /* Placeholder en blanco translúcido */
+}
+
+.search-box .form-control:focus {
+    border-color: var(--color-azul-claro);
+    box-shadow: 0 0 8px rgba(63,86,255,0.3);
+    background: #fff; /* Cambia a blanco al hacer focus */
+    color: var(--color-azul-oscuro); /* Texto azul oscuro al hacer focus */
+    outline: none;
+}
+
+.search-box .form-control:focus::placeholder {
+    color: rgba(6,17,172,0.5); /* Placeholder azul translúcido al hacer focus */
+}
+
+.search-box .btn {
+    border: 2px solid rgba(255,255,255,0.3);
+    border-left: none;
+    border-radius: 0 25px 25px 0;
+    background: var(--color-azul-medio); /* Cambiado para diferenciarlo del input */
+    color: #fff;
+    padding: 8px 15px;
+    height: 38px; /* Misma altura que el input */
+    transition: all 0.3s ease;
+}
+
+.search-box .btn:hover {
+    background: #fff;
+    color: var(--color-azul-medio);
+    border-color: var(--color-azul-claro);
+}
+
+/* Botón de búsqueda móvil */
+.navbar-search-toggle {
+    position: absolute;
+    right: 60px;
+    top: 8px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.navbar-search-toggle:hover,
+.navbar-search-toggle:focus {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--color-azul-claro);
+    color: var(--color-azul-claro);
+    outline: none;
+}
+
+/* Campo de búsqueda móvil */
+.navbar-search-mobile {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--color-azul-medio);
+    padding: 10px 15px;
+    border-bottom: 2px solid var(--color-azul-claro);
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.navbar-search-mobile.show {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar-search-mobile .form-control {
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 6px 0 0 6px;
+    background: rgba(255,255,255,0.95);
+    color: var(--color-azul-oscuro);
+    font-size: 14px;
+    padding: 8px 12px;
+}
+
+.navbar-search-mobile .form-control:focus {
+    border-color: var(--color-azul-claro);
+    box-shadow: 0 0 6px rgba(63,86,255,0.3);
+    outline: none;
+}
+
+.navbar-search-mobile .btn {
+    border: 2px solid rgba(255,255,255,0.3);
+    border-left: none;
+    background: var(--color-azul-claro);
+    color: #fff;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+}
+
+.navbar-search-mobile .btn:hover {
+    background: #fff;
+    color: var(--color-azul-medio);
+}
+
+#btnCerrarSearchMobile {
+    background: #dc3545;
+    border-color: #dc3545;
+}
+
+#btnCerrarSearchMobile:hover {
+    background: #fff;
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsivo */
+@media (max-width: 767px) {
+    .footer-pixel {
+        padding: 30px 0 20px 0;
+        text-align: center; /* Centra todo el contenido */
+    }
+    
+    .footer-toggle {
+        font-size: 16px;
+        justify-content: center; /* Centra el título */
+    }
+    
+    .footer-content {
+        text-align: center; /* Centra el contenido */
+    }
+    
+    .footer-content p {
+        text-align: center; /* Centra los párrafos */
+    }
+    
+    .mission-points,
+    .vision-timeline {
+        text-align: center; /* Centra las listas */
+    }
+    
+    .footer-links {
+        text-align: center; /* Centra los enlaces de contacto */
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .footer-links li {
+        text-align: center; /* Centra cada elemento de contacto */
+        display: block; /* Cambia a block para mejor centrado */
+        margin: 0 auto; /* Centra el elemento */
+    }
+    
+    .contact-item {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Centra el contenido */
+        text-align: center;
+        margin: 12px auto; /* Centra el elemento */
+        max-width: 200px; /* Limita el ancho para mejor centrado */
+        transform: none !important; /* Elimina cualquier transform */
+    }
+    
+    .contact-item:hover {
+        background: rgba(255,255,255,0.1);
+        transform: none !important; /* Elimina el translateX en móvil */
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .scroll-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* Submenú de categorías */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0 !important;           /* Alinea perfectamente con el menú principal */
+    left: 100%;
+    margin-top: 0 !important;    /* Elimina cualquier desplazamiento vertical */
+    background-color: var(--color-azul-claro);
+    border-radius: 0 6px 6px 6px;
+    min-width: 160px;
+}
+
+.dropdown-submenu > a:after {
+    float: right;
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+@media (min-width: 768px) {
+    .navbar-pixel .dropdown-menu > .dropdown-submenu {
+        position: relative;
+    }
+    .navbar-pixel .dropdown-menu > .dropdown-submenu > .dropdown-menu {
+        left: 100%;      /* Despliega a la derecha del menú principal */
+        top: 0;
+        margin-top: -1px;
+        position: absolute;
+        background-color: var(--color-azul-claro);
+        border-radius: 0 6px 6px 6px;
+        min-width: 160px;
+        display: none;
+        z-index: 10001;
+    }
+    .navbar-pixel .dropdown-menu > .dropdown-submenu:hover > .dropdown-menu {
+        display: block;
+    }
+    .navbar-pixel .dropdown-menu > .dropdown-submenu > .dropdown-menu > li > a {
+        color: var(--color-azul-palido) !important;
+        background-color: var(--color-azul-claro) !important;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .navbar-pixel .dropdown-menu > .dropdown-submenu > .dropdown-menu > li > a:hover {
+        background-color: var(--color-azul-palido) !important;
+        color: var(--color-azul-oscuro) !important;
+    }
+}
+
+/* Submenú de categorías en móviles */
+@media (max-width: 767px) {
+    .dropdown-submenu > .dropdown-menu {
+        display: none;
+        background-color: var(--color-azul-oscuro); /* Igual que la navbar */
+        color: #fff;
+        position: static;
+        left: 0;
+        top: 0;
+        margin-top: 0;
+        border-radius: 0;
+        min-width: 100%;
+        box-shadow: none;
+    }
+    .dropdown-submenu > a:after {
+        content: "";
+    }
+    .navbar-pixel .dropdown-menu > .dropdown-submenu > .dropdown-menu > li > a {
+        color: #fff !important;
+        background-color: var(--color-azul-oscuro) !important;
+        font-size: 17px;
+        padding: 12px 40px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .navbar-pixel .dropdown-menu > .dropdown-submenu > .dropdown-menu > li > a:hover {
+        background-color: var(--color-azul-medio) !important;
+        color: #fff !important;
+    }
+}
+
+.navbar-pixel .dropdown-menu,
+.navbar-pixel .dropdown-submenu > .dropdown-menu {
+    border: none !important; /* Elimina el borde de los menús y submenús */
+    box-shadow: none !important; /* Elimina cualquier sombra */
+}
+
+.row {
+    flex-wrap: wrap;
+    align-items: stretch; /* Todas las cards se estiran al alto de la más grande */
+    justify-content: flex-start;
+}
+
+.card-videojuego {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 300px;
+    margin: 0 auto 12px auto;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px 0 rgba(60, 60, 60, 0.373); /* Gris suave */
+    background-color: #ffffff;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    min-height: 410px; /* Puedes ajustar este valor si lo deseas */
+}
+
+.card-videojuego:hover {
+    /* Box-shadow azul solo en hover */
+    transform: scale(1.04);
+    box-shadow: 0 0 15px #8492fec8;
+}
+
+.card-videojuego .titulo-juego {
+    color: var(--color-azul-oscuro);
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card-videojuego .info-juego {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    justify-content: flex-start; /* Alinea el contenido a la izquierda */
+}
+
+.card-videojuego .icono-plataforma {
+    font-size: 22px;
+    color: var(--color-azul-claro);
+    vertical-align: middle;
+}
+
+.card-videojuego .icono-plataforma-img {
+    order: 2;
+    margin-right: 0;
+    margin-left: 8px;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    display: inline-block;
+    border-radius: 0;
+}
+
+.card-videojuego .categoria-juego {
+    order: 1;
+    font-weight: bold;
+    color: var(--color-azul-claro); /* tono suave azul */
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.card-videojuego .precio-juego {
+    color: var(--color-azul-oscuro);
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+}
+
+.card-videojuego .btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.btn-vermas,
+.btn-agregar {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-azul-medio);
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+    box-shadow: 0 2px 8px rgba(6,17,172,0.08);
+    border-radius: 8px !important;
+}
+
+/* Card videojuego imagen */
+.card-videojuego img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    margin: 12px auto 8px auto;
+    display: block;
+    /*box-shadow: 0 2px 8px rgba(6,17,172,0.10);*/
+    object-fit: contain; /* Ajusta la imagen sin recortarla ni deformarla */
+}
+
+/* Botones animados: color azul claro en hover */
+.card-videojuego .btn-vermas:hover,
+.card-videojuego .btn-agregar:hover {
+    background-color: var(--color-azul-claro);
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+/* Aplica el mismo estilo de los botones de las cards a los botones del modal */
+#modalJuego .btn-agregar,
+#modalJuego .btn-default[data-dismiss="modal"] {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-azul-medio);
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(6,17,172,0.08);
+    border-radius: 8px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#modalJuego .btn-agregar:hover,
+#modalJuego .btn-default[data-dismiss="modal"]:hover {
+    background-color: var(--color-azul-claro);
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+/* Botones del modal uno al lado del otro */
+#modalJuego .modal-footer {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Icono X del modal en blanco */
+#modalJuego .close {
+    color: #fff !important;
+    opacity: 1;
+    font-size: 28px;
+    text-shadow: none;
+}
+
+/* Icono X del modal en blanco */
+#modalCarrito .close {
+    color: #fff !important;
+    opacity: 1;
+    font-size: 28px;
+    text-shadow: none;
+}
+
+/* Vista móvil para el modal: imagen arriba, datos abajo */
+@media (max-width: 767px) {
+    #modalJuego .modal-body .modal-flex-info {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    #modalJuego .modal-body .modal-flex-info img {
+        margin: 0 0 18px 0 !important;
+        max-width: 90vw !important;
+        max-height: 220px !important;
+    }
+    #modalJuego .modal-body .modal-flex-info > div {
+        text-align: center !important;
+    }
+}
+
+/* Ajusta el alto de los controles del carrusel para que coincidan con el alto de las imágenes */
+.carousel-control {
+    height: 100% !important;      /* Ocupa el alto total del carrusel */
+    top: 0 !important;
+    bottom: 0 !important;
+    background: none !important;  /* Elimina el fondo por defecto si lo deseas */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+/* Opcional: ajusta el tamaño del icono de flecha para que no se vea tan grande */
+.carousel-control .glyphicon,
+.carousel-control .fa {
+    font-size: 30px;              /* Ajusta el tamaño del icono según tu preferencia */
+    color: #ffffff;               /* Color azul medio, puedes cambiarlo */
+    text-shadow: none;
+    
+}
+
+#modalCarrito .btn-cerrar-carrito {
+    background-color: var(--color-azul-medio);
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px !important;
+    border: none;
+    padding: 8px 12px;
+    font-size: 13px;
+    box-shadow: 0 2px 8px rgba(6,17,172,0.08);
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#modalCarrito .btn-cerrar-carrito:hover {
+    background-color: var(--color-azul-claro);
+    color: #fff;
+    transform: scale(1.08);
+}
+
+/* Modal del carrito más ancho en PC */
+@media (min-width: 768px) {
+    #modalCarrito .modal-dialog {
+        width: 700px;
+        max-width: 90vw;
+    }
+}
+
+/* Modal del carrito responsivo en móvil */
+@media (max-width: 767px) {
+    #modalCarrito .modal-dialog {
+        width: 98vw;
+        margin: 10px auto;
+    }
+    #modalCarrito .modal-content {
+        border-radius: 12px;
+    }
+    #modalCarrito .modal-body {
+        padding: 10px 4px;
+        overflow-x: auto;
+    }
+    #modalCarrito table {
+        font-size: 13px;
+        min-width: 400px;
+    }
+    #modalCarrito .modal-footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* Icono de categorías: derecha en PC, abajo en móvil */
+.toggle-categorias .fa-chevron-right {
+    transition: transform 0.3s;
+}
+
+@media (max-width: 767px) {
+    .toggle-categorias .fa-chevron-right {
+        transform: rotate(90deg);
+    }
+}
+
+/* Notificación animada y con estilos mejorados */
+#notificacion-pixelplay {
+    background: var(--color-azul-medio);
+    color: #fff;
+    padding: 18px 28px;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(6,17,172,0.18);
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 0;
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 9999;
+    min-width: 220px;
+    pointer-events: none;
+    transition: opacity 0.5s, transform 0.5s;
+    transform: translateY(-30px) scale(0.98);
+}
+#notificacion-pixelplay.show {
+    opacity: 0.97;
+    transform: translateY(0) scale(1);
+}
+
+/* Texto grande para el tipo de acción, nombre del juego más pequeño */
+#notificacion-pixelplay .notif-titulo {
+    font-size: 22px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+}
+#notificacion-pixelplay .notif-nombre {
+    font-size: 16px;
+    font-weight: normal;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Input cantidad en la tabla del carrito con estilo suave */
+.input-cantidad-carrito {
+    border: 1.5px solid var(--color-azul-claro);
+    border-radius: 10px;
+    padding: 4px 8px;
+    font-size: 15px;
+    background: #f7faff;
+    color: var(--color-azul-oscuro);
+    box-shadow: 0 1px 6px rgba(6,17,172,0.08);
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+    text-align: center;
+}
+.input-cantidad-carrito:focus {
+    border-color: var(--color-azul-medio);
+    box-shadow: 0 2px 10px rgba(6,17,172,0.15);
+}
+
+/* Evita que los botones queden grises al hacer clic (active/focus) */
+.btn-vermas:active,
+.btn-vermas:focus,
+.btn-agregar:active,
+.btn-agregar:focus,
+#modalJuego .btn-agregar:active,
+#modalJuego .btn-agregar:focus,
+#modalJuego .btn-default[data-dismiss="modal"]:active,
+#modalJuego .btn-default[data-dismiss="modal"]:focus {
+    background-color: var(--color-azul-medio) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(6,17,172,0.08);
+    outline: none;
+    border: none;
+    transform: none;
+}
+
+/* Estilos para el modal de agregar producto */
+#modalAgregarProducto .form-control {
+    border: 1.5px solid var(--color-azul-claro);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    background: #f9fbff;
+    color: var(--color-azul-oscuro);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#modalAgregarProducto .form-control:focus {
+    border-color: var(--color-azul-medio);
+    box-shadow: 0 0 8px rgba(6,17,172,0.15);
+    outline: none;
+}
+
+#modalAgregarProducto .form-group label {
+    font-weight: bold;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 5px;
+}
+
+#modalAgregarProducto .checkbox label {
+    font-weight: normal;
+    color: var(--color-azul-medio);
+}
+
+/* Estilos adicionales para preview de imágenes */
+#modalAgregarProducto .preview-container {
+    margin-top: 10px;
+    border: 2px dashed var(--color-azul-claro);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9fbff;
+}
+
+#modalAgregarProducto .preview-container img {
+    max-width: 100%;
+    max-height: 120px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#modalAgregarProducto .preview-container.empty {
+    color: var(--color-azul-claro);
+    font-size: 14px;
+}
+
+#modalAgregarProducto input[type="file"] {
+    border: 1.5px solid var(--color-azul-claro);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    background: #f9fbff;
+    transition: border-color 0.3s;
+}
+
+#modalAgregarProducto input[type="file"]:focus {
+    border-color: var(--color-azul-medio);
+    box-shadow: 0 0 8px rgba(6,17,172,0.15);
+    outline: none;
+}
+
+/* Modal más ancho para el formulario */
+#modalAgregarProducto .modal-dialog {
+    width: 600px;
+    max-width: 90vw;
+}
+
+@media (max-width: 767px) {
+    #modalAgregarProducto .modal-dialog {
+        width: 98vw;
+        margin: 10px auto;
+    }
+}
+
+/* Campo de búsqueda desktop */
+.navbar-form.navbar-left {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.search-box {
+    min-width: 300px;
+}
+
+.search-box .form-control {
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 25px 0 0 25px;
+    background: var(--color-azul-medio); /* Cambiado a azul medio por defecto */
+    color: #fff; /* Texto blanco por defecto */
+    font-size: 14px;
+    padding: 8px 15px;
+    height: 38px; /* Altura fija para que coincida con el botón */
+    transition: all 0.3s ease;
+}
+
+.search-box .form-control::placeholder {
+    color: rgba(255,255,255,0.8); /* Placeholder en blanco translúcido */
+}
+
+.search-box .form-control:focus {
+    border-color: var(--color-azul-claro);
+    box-shadow: 0 0 8px rgba(63,86,255,0.3);
+    background: #fff; /* Cambia a blanco al hacer focus */
+    color: var(--color-azul-oscuro); /* Texto azul oscuro al hacer focus */
+    outline: none;
+}
+
+.search-box .form-control:focus::placeholder {
+    color: rgba(6,17,172,0.5); /* Placeholder azul translúcido al hacer focus */
+}
+
+.search-box .btn {
+    border: 2px solid rgba(255,255,255,0.3);
+    border-left: none;
+    border-radius: 0 25px 25px 0;
+    background: var(--color-azul-medio); /* Cambiado para diferenciarlo del input */
+    color: #fff;
+    padding: 8px 15px;
+    height: 38px; /* Misma altura que el input */
+    transition: all 0.3s ease;
+}
+
+.search-box .btn:hover {
+    background: #fff;
+    color: var(--color-azul-medio);
+    border-color: var(--color-azul-claro);
+}
+
+/* Botón de búsqueda móvil */
+.navbar-search-toggle {
+    position: absolute;
+    right: 60px;
+    top: 8px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.navbar-search-toggle:hover,
+.navbar-search-toggle:focus {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--color-azul-claro);
+    color: var(--color-azul-claro);
+    outline: none;
+}
+
+/* Campo de búsqueda móvil */
+.navbar-search-mobile {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--color-azul-medio);
+    padding: 10px 15px;
+    border-bottom: 2px solid var(--color-azul-claro);
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.navbar-search-mobile.show {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar-search-mobile .form-control {
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 6px 0 0 6px;
+    background: rgba(255,255,255,0.95);
+    color: var(--color-azul-oscuro);
+    font-size: 14px;
+    padding: 8px 12px;
+}
+
+.navbar-search-mobile .form-control:focus {
+    border-color: var(--color-azul-claro);
+    box-shadow: 0 0 6px rgba(63,86,255,0.3);
+    outline: none;
+}
+
+.navbar-search-mobile .btn {
+    border: 2px solid rgba(255,255,255,0.3);
+    border-left: none;
+    background: var(--color-azul-claro);
+    color: #fff;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+}
+
+.navbar-search-mobile .btn:hover {
+    background: #fff;
+    color: var(--color-azul-medio);
+}
+
+#btnCerrarSearchMobile {
+    background: #dc3545;
+    border-color: #dc3545;
+}
+
+#btnCerrarSearchMobile:hover {
+    background: #fff;
+    color: #dc3545;
+    border-color: #dc3545;
 }
 
 /* Animaciones */

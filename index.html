@@ -14,117 +14,146 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top navbar-pixel">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <!-- Botón hamburguesa para móviles -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-pixel-collapse" aria-expanded="false">
-                    <span class="sr-only">Mostrar navegación</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="img/logo/pixelplay_text_logo_right_all_white.png" alt="Pixel Play" class="navbar-logo">
-                </a>
-            </div>
-            <!-- Opciones del menú colapsable -->
-            <div class="collapse navbar-collapse" id="navbar-pixel-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#" class="btn-inicio">Inicio</a></li>
-                    <li><a href="#" class="btn-biblioteca">Biblioteca</a></li>
-                    <li><a href="#" class="btn-ofertas">Ofertas</a></li>
-                    <li><a href="#" class="btn-populares">Populares</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorías<span class="caret"></i></span></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a href="#" class="filtro-consola" data-consola="PS5">
-                                    PS5
-                                    <span class="toggle-categorias" style="float:right; cursor:pointer;">
-                                        <i class="fa fa-chevron-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" class="filtro-categoria" data-categoria="accion">Acción</a></li>
-                                    <li><a href="#" class="filtro-categoria" data-categoria="aventura">Aventura</a></li>
-                                    <li><a href="#" class="filtro-categoria" data-categoria="deportes">Deportes</a></li>
-                                    <li><a href="#" class="filtro-categoria" data-categoria="rpg">RPG</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a href="#" class="filtro-consola" data-consola="XBOX">
-                                    XBOX
-                                    <span class="toggle-categorias" style="float:right; cursor:pointer;">
-                                        <i class="fa fa-chevron-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" class="filtro-categoria" data-categoria="accion">Acción</a></li>
-                                    <li><a href="#" class="filtro-categoria" data-categoria="aventura">Aventura</a></li>
-                                    <li><a href="#" class="filtro-categoria" data-categoria="deportes">Deportes</a></li>
-                                    <li><a href="#" class="filtro-categoria" data-categoria="rpg">RPG</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a href="#" class="filtro-consola" data-consola="Nintendo Switch">
-                                    Nintendo Switch
-                                    <span class="toggle-categorias" style="float:right; cursor:pointer;">
-                                        <i class="fa fa-chevron-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" class="filtro-categoria" data-categoria="aventura">Aventura</a></li>
-                                    <li><a href="#" class="filtro-categoria" data-categoria="carreras">Carreras</a></li>
-                                    <li><a href="#" class="filtro-categoria" data-categoria="deportes">Deportes</a></li>
-                                    <li><a href="#" class="filtro-categoria" data-categoria="rpg">RPG</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a href="#" class="filtro-consola" data-consola="PC">
-                                    PC
-                                    <span class="toggle-categorias" style="float:right; cursor:pointer;">
-                                        <i class="fa fa-chevron-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" class="filtro-categoria" data-categoria="aventura">Aventura</a></li>
-                                    <li><a href="#" class="filtro-categoria" data-categoria="accion">Acción</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a href="#">Consolas</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Nuevas</a></li>
-                                    <li><a href="#">Retro</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                
-                <ul class="nav navbar-nav navbar-right">
-
-                    <!-- Boton agregar nuevo producto -->
-                    <li>
-                        <a href="#" class="btn-agregar-producto-navbar">
-                            <i class="fa-solid fa-plus-circle"></i>
-                            &nbsp;Agregar Producto
-                        </a>
-                    </li>
-
-                    <!-- Boton carrito de compras -->
-                    <li>
-                        <a href="#" class="btn-carrito-navbar">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            &nbsp;Carrito
-                            <span id="carrito-count" class="badge" style="background:var(--color-azul-claro); color:#fff; font-size:13px; margin-left:6px;">0</span>
-                        </a>
-                    </li>
-                </ul>
+    <!-- Actualiza la navbar agregando el campo de búsqueda -->
+<nav class="navbar navbar-default navbar-fixed-top navbar-pixel">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!-- Botón hamburguesa para móviles -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-pixel-collapse" aria-expanded="false">
+                <span class="sr-only">Mostrar navegación</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+            <!-- Botón de búsqueda móvil (solo visible en móvil) -->
+            <button type="button" class="navbar-search-toggle visible-xs" id="toggleSearchMobile">
+                <i class="fa fa-search"></i>
+            </button>
+            
+            <a class="navbar-brand" href="#">
+                <img src="img/logo/pixelplay_text_logo_right_all_white.png" alt="Pixel Play" class="navbar-logo">
+            </a>
+        </div>
+        
+        <!-- Campo de búsqueda móvil (oculto por defecto) -->
+        <div class="navbar-search-mobile" id="searchMobileContainer">
+            <div class="input-group">
+                <input type="text" class="form-control" id="searchInputMobile" placeholder="Buscar videojuegos...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="btnBuscarMobile">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <button class="btn btn-default" type="button" id="btnCerrarSearchMobile">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </span>
             </div>
         </div>
-    </nav>
+        
+        <!-- Opciones del menú colapsable -->
+        <div class="collapse navbar-collapse" id="navbar-pixel-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#" class="btn-inicio">Inicio</a></li>
+                <li><a href="#" class="btn-biblioteca">Biblioteca</a></li>
+                <li><a href="#" class="btn-ofertas">Ofertas</a></li>
+                <li><a href="#" class="btn-populares">Populares</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorías<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a href="#" class="filtro-consola" data-consola="PS5">
+                                PS5
+                                <span class="toggle-categorias" style="float:right; cursor:pointer;">
+                                    <i class="fa fa-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="filtro-categoria" data-categoria="accion">Acción</a></li>
+                                <li><a href="#" class="filtro-categoria" data-categoria="aventura">Aventura</a></li>
+                                <li><a href="#" class="filtro-categoria" data-categoria="deportes">Deportes</a></li>
+                                <li><a href="#" class="filtro-categoria" data-categoria="rpg">RPG</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="filtro-consola" data-consola="XBOX">
+                                XBOX
+                                <span class="toggle-categorias" style="float:right; cursor:pointer;">
+                                    <i class="fa fa-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="filtro-categoria" data-categoria="accion">Acción</a></li>
+                                <li><a href="#" class="filtro-categoria" data-categoria="aventura">Aventura</a></li>
+                                <li><a href="#" class="filtro-categoria" data-categoria="deportes">Deportes</a></li>
+                                <li><a href="#" class="filtro-categoria" data-categoria="rpg">RPG</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="filtro-consola" data-consola="Nintendo Switch">
+                                Nintendo Switch
+                                <span class="toggle-categorias" style="float:right; cursor:pointer;">
+                                    <i class="fa fa-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="filtro-categoria" data-categoria="aventura">Aventura</a></li>
+                                <li><a href="#" class="filtro-categoria" data-categoria="carreras">Carreras</a></li>
+                                <li><a href="#" class="filtro-categoria" data-categoria="deportes">Deportes</a></li>
+                                <li><a href="#" class="filtro-categoria" data-categoria="rpg">RPG</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="filtro-consola" data-consola="PC">
+                                PC
+                                <span class="toggle-categorias" style="float:right; cursor:pointer;">
+                                    <i class="fa fa-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="filtro-categoria" data-categoria="aventura">Aventura</a></li>
+                                <li><a href="#" class="filtro-categoria" data-categoria="accion">Acción</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <!-- Campo de búsqueda desktop (solo visible en desktop) -->
+            <form class="navbar-form navbar-left hidden-xs" role="search">
+                <div class="form-group">
+                    <div class="input-group search-box">
+                        <input type="text" class="form-control" id="searchInputDesktop" placeholder="Buscar videojuegos...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="btnBuscarDesktop">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Botón agregar nuevo producto -->
+                <li>
+                    <a href="#" class="btn-agregar-producto-navbar">
+                        <i class="fa-solid fa-plus-circle"></i>
+                        &nbsp;Agregar
+                    </a>
+                </li>
+
+                <!-- Botón carrito de compras -->
+                <li>
+                    <a href="#" class="btn-carrito-navbar">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        &nbsp;Carrito
+                        <span id="carrito-count" class="badge" style="background:var(--color-azul-claro); color:#fff; font-size:13px; margin-left:6px;">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
     <!-- El resto de tu contenido aquí -->
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -149,15 +178,15 @@
         <!-- Slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <img src="img/banners/bannerPXN.png" alt="Imagen 1" style="width:100%;">
+                <img src="img/banners/bannerGTA.png" alt="Imagen 1" style="width:100%;">
                 <div class="carousel-caption">
                     <h3>Bienvenido a Pixel Play</h3>
-                    <p>¡Las mejores consolas y videojuegos!</p>
+                    <p>¡Tu mejor opción en videojuegos!</p>
                 </div>
             </div>
              
             <div class="item">
-                <img src="img/banners/bannerGTA.png" alt="Imagen 2" style="width:100%;">
+                <img src="img/banners/bannerACV.png" alt="Imagen 2" style="width:100%;">
                 <div class="carousel-caption">
                     <h3>Ofertas Especiales</h3>
                     <p>Descubre nuestras promociones</p>
@@ -176,7 +205,7 @@
                 <img src="img/banners/bannerMC.png" alt="Imagen 4" style="width:100%;">
                 <div class="carousel-caption">
                     <h3>Bienvenido a Pixel Play</h3>
-                    <p>¡Las mejores consolas y videojuegos!</p>
+                    <p>¡Tu mejor opción en videojuegos!</p>
                 </div>
             </div>
 

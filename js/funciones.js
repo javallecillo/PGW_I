@@ -206,10 +206,24 @@ function renderizarSecciones() {
 
 // Modifica las funciones de la navbar para restaurar el contenido
 function mostrarTodasSecciones() {
-    document.getElementById('ofertas-container').style.display = '';
-    document.getElementById('biblioteca-container').style.display = '';
-    document.getElementById('populares-container').style.display = '';
-    renderizarSecciones();
+    // Limpiar búsqueda si hay alguna activa
+    if (terminoBusquedaActual) {
+        terminoBusquedaActual = '';
+        resultadosBusqueda = [];
+        document.getElementById('searchInputDesktop').value = '';
+        document.getElementById('searchInputMobile').value = '';
+    }
+    
+    // Restaurar títulos originales
+    document.querySelector('#biblioteca-container h2').textContent = 'Biblioteca de Juegos';
+    
+    // Mostrar todas las secciones
+    document.getElementById('ofertas-container').style.display = 'block';
+    document.getElementById('biblioteca-container').style.display = 'block';
+    document.getElementById('populares-container').style.display = 'block';
+    
+    // Recargar contenido original
+    cargarProductos();
 }
 
 function mostrarSoloBiblioteca() {
@@ -687,4 +701,165 @@ document.addEventListener('DOMContentLoaded', function() {
 $('#modalAgregarProducto').on('hidden.bs.modal', function () {
     document.getElementById('formAgregarProducto').reset();
     limpiarPreviews();
+});
+
+// Agrega estas funciones a tu funciones.js
+
+// Variables para búsqueda
+let resultadosBusqueda = [];
+let terminoBusquedaActual = '';
+
+// Eventos para búsqueda
+document.addEventListener('click', function(e) {
+    // Botón búsqueda móvil toggle
+    if (e.target.closest('#toggleSearchMobile')) {
+        e.preventDefault();
+        toggleSearchMobile();
+    }
+    
+    // Botón cerrar búsqueda móvil
+    if (e.target.closest('#btnCerrarSearchMobile')) {
+        e.preventDefault();
+        closeSearchMobile();
+    }
+    
+    // Botón buscar desktop
+    if (e.target.closest('#btnBuscarDesktop')) {
+        e.preventDefault();
+        buscarProductos('desktop');
+    }
+    
+    // Botón buscar móvil
+    if (e.target.closest('#btnBuscarMobile')) {
+        e.preventDefault();
+        buscarProductos('mobile');
+    }
+});
+
+// Eventos para Enter en campos de búsqueda
+document.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        if (e.target.id === 'searchInputDesktop') {
+            e.preventDefault();
+            buscarProductos('desktop');
+        } else if (e.target.id === 'searchInputMobile') {
+            e.preventDefault();
+            buscarProductos('mobile');
+        }
+    }
+});
+
+// Función para mostrar/ocultar búsqueda móvil
+function toggleSearchMobile() {
+    const searchContainer = document.getElementById('searchMobileContainer');
+    const isVisible = searchContainer.classList.contains('show');
+    
+    if (isVisible) {
+        closeSearchMobile();
+    } else {
+        searchContainer.classList.add('show');
+        document.getElementById('searchInputMobile').focus();
+        // Oculta el menú si está abierto
+        $('.navbar-collapse').collapse('hide');
+    }
+}
+
+// Función para cerrar búsqueda móvil
+function closeSearchMobile() {
+    const searchContainer = document.getElementById('searchMobileContainer');
+    searchContainer.classList.remove('show');
+    document.getElementById('searchInputMobile').value = '';
+    
+    // Si hay una búsqueda activa, volver a mostrar todos los productos
+    if (terminoBusquedaActual) {
+        limpiarBusqueda();
+    }
+}
+
+// Función principal de búsqueda
+function buscarProductos(tipo) {
+    const inputId = tipo === 'desktop' ? 'searchInputDesktop' : 'searchInputMobile';
+    const termino = document.getElementById(inputId).value.trim().toLowerCase();
+    
+    if (!termino) {
+        mostrarNotificacion("Ingrese un término de búsqueda", "info");
+        return;
+    }
+    
+    terminoBusquedaActual = termino;
+    
+    // Filtrar productos que coincidan con el nombre
+    resultadosBusqueda = productosOrdenadosGlobal.filter(producto => 
+        producto.nombre.toLowerCase().includes(termino)
+    );
+    
+    if (resultadosBusqueda.length === 0) {
+        mostrarNotificacion("No se encontraron resultados", "info", `para "${termino}"`);
+        return;
+    }
+    
+    // Mostrar resultados
+    mostrarResultadosBusqueda(termino);
+    
+    // Cerrar búsqueda móvil si está abierta
+    if (tipo === 'mobile') {
+        closeSearchMobile();
+    }
+    
+    mostrarNotificacion("Búsqueda realizada", "success", `${resultadosBusqueda.length} resultado(s) encontrado(s)`);
+}
+
+// Función para mostrar resultados de búsqueda
+function mostrarResultadosBusqueda(termino) {
+    // Ocultar todas las secciones
+    document.getElementById('ofertas-container').style.display = 'none';
+    document.getElementById('populares-container').style.display = 'none';
+    
+    // Cambiar título y mostrar resultados en biblioteca
+    const bibliotecaContainer = document.getElementById('biblioteca-container');
+    const titulo = bibliotecaContainer.querySelector('h2');
+    titulo.textContent = `Resultados de búsqueda: "${termino}"`;
+    
+    // Limpiar y llenar con resultados
+    const contenedor = bibliotecaContainer.querySelector('div');
+    contenedor.innerHTML = '';
+    
+    resultadosBusqueda.forEach(producto => {
+        contenedor.innerHTML += crearCard(producto);
+    });
+    
+    bibliotecaContainer.style.display = 'block';
+    
+    // Scroll hacia los resultados
+    bibliotecaContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Función para limpiar búsqueda y volver al estado normal
+function limpiarBusqueda() {
+    terminoBusquedaActual = '';
+    resultadosBusqueda = [];
+    
+    // Limpiar campos de búsqueda
+    document.getElementById('searchInputDesktop').value = '';
+    document.getElementById('searchInputMobile').value = '';
+    
+    // Restaurar vista normal
+    mostrarTodasSecciones();
+}
+
+// Función para que la búsqueda sea dinámica (opcional)
+document.addEventListener('input', function(e) {
+    if (e.target.id === 'searchInputDesktop' || e.target.id === 'searchInputMobile') {
+        const valor = e.target.value.trim();
+        
+        // Si se borra el campo, volver a mostrar todo
+        if (!valor && terminoBusquedaActual) {
+            limpiarBusqueda();
+        }
+        
+        // Búsqueda dinámica después de 3 caracteres (opcional)
+        // if (valor.length >= 3) {
+        //     buscarProductos(e.target.id === 'searchInputDesktop' ? 'desktop' : 'mobile');
+        // }
+    }
 });
